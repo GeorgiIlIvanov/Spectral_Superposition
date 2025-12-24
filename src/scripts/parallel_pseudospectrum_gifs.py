@@ -4,7 +4,7 @@ Parallel GIF generation for pseudospectrum episodes (one GIF per instance),
 supporting your PseudoPy "fast" mode.
 
 Usage:
-  python parallel_pseudospectrum_gifs_fast.py --snaps W_snaps.pkl --out_dir pseudospectrum_gifs --which feature --epsilon 1e-2 --grid_size 250 --fps 3 --fast --max_workers 8
+  python parallel_pseudospectrum_gifs_fast.py --snaps W_snaps.pkl --out_dir pseudospectrum_gifs --which feature --fps 3 --max_workers 8
 
 Key points for FAST mode:
 - We DO NOT call pyplot.show().
@@ -55,16 +55,11 @@ def _fig_to_rgb_array(fig):
 
 def generate_pseudospectrum(
     weights,
-    epsilon,
     step=None,
-    grid_size=250,
     pad=0.5,
     xlim=None,
     ylim=None,
-    show_field=True,
-    log_scale=True,
     ax=None,
-    fast=True,
 ):
     """
     Your function, adapted so that BOTH branches:
@@ -74,7 +69,6 @@ def generate_pseudospectrum(
     """
     A = np.asarray(weights)
     assert A.ndim == 2 and A.shape[0] == A.shape[1], "weights must be a square matrix"
-    assert epsilon > 0, "epsilon must be > 0"
 
     eigs = np.linalg.eigvals(A)
 
@@ -96,51 +90,6 @@ def generate_pseudospectrum(
 
     # Clear any prior artists on this ax (important when reusing axes)
     ax.cla()
-
-    if not fast:
-        # ---- slow grid evaluation method (your original) ----
-        n = A.shape[0]
-        xs = np.linspace(xlim[0], xlim[1], grid_size)
-        ys = np.linspace(ylim[0], ylim[1], grid_size)
-        X, Y = np.meshgrid(xs, ys)
-        Z = X + 1j * Y
-
-        I = np.eye(n, dtype=complex)
-        resolvent_norm = np.empty(Z.shape, dtype=float)
-
-        for i in range(grid_size):
-            for j in range(grid_size):
-                M = (Z[i, j] * I) - A
-                s = np.linalg.svd(M, compute_uv=False)
-                smin = s[-1]
-                resolvent_norm[i, j] = np.inf if smin == 0 else (1.0 / smin)
-
-        level = 1.0 / epsilon
-        if show_field:
-            field = np.log10(resolvent_norm) if log_scale else resolvent_norm
-            imh = ax.imshow(
-                field,
-                origin="lower",
-                extent=(xlim[0], xlim[1], ylim[0], ylim[1]),
-                aspect="auto",
-            )
-            cbar = fig.colorbar(imh, ax=ax, shrink=0.9)
-            cbar.set_label("log10 ||(zI-A)^(-1)||" if log_scale else "||(zI-A)^(-1)||")
-
-        cs = ax.contour(X, Y, resolvent_norm, levels=[level], linewidths=2)
-        ax.clabel(cs, inline=True, fontsize=9, fmt={level: f"1/ε = {level:.2g}"})
-
-        ax.scatter(eigs.real, eigs.imag, s=30, marker="x", label="eigs")
-        ax.set_title(f"ε-pseudospectrum level set (ε={epsilon:g}) step={step}")
-        ax.set_xlabel("Re(z)")
-        ax.set_ylabel("Im(z)")
-        ax.set_xlim(*xlim)
-        ax.set_ylim(*ylim)
-        ax.legend(loc="best")
-
-        info = dict(level=level, xlim=xlim, ylim=ylim, eigenvalues=eigs)
-        return fig, ax, info
-
     # ---- fast PseudoPy method ----
     # PseudoPy example usage is pseudo.plot(...); pyplot.show(). We omit show() and capture fig. citeturn0search3
     try:
@@ -230,12 +179,9 @@ def generate_gif_for_instance(
     out_dir: str,
     instance_id: int,
     which: str,
-    epsilon: float,
-    grid_size: int,
     fps: int,
     pad: float,
     steps_list,
-    fast: bool,
 ):
     start_time = time.time()
     # Load inside worker to avoid pickling huge objects
@@ -261,13 +207,10 @@ def generate_gif_for_instance(
 
         fig, ax, _ = generate_pseudospectrum(
             A,
-            epsilon=epsilon,
             step=step,
-            grid_size=grid_size,
             pad=pad,
             xlim=xlim,
             ylim=ylim,
-            fast=fast,
         )
         frames.append(_fig_to_rgb_array(fig))
         plt.close(fig)
@@ -289,11 +232,8 @@ def main():
     ap.add_argument("--snaps", type=str, required=True, help="Path to W_snaps pickle (e.g., W_snaps.pkl)")
     ap.add_argument("--out_dir", type=str, default="pseudospectrum_gifs", help="Output directory for GIFs")
     ap.add_argument("--which", type=str, default="feature", choices=["feature", "hidden"])
-    ap.add_argument("--epsilon", type=float, default=1e-2)
-    ap.add_argument("--grid_size", type=int, default=250)
     ap.add_argument("--fps", type=int, default=3)
     ap.add_argument("--pad", type=float, default=0.5)
-    ap.add_argument("--fast", action="store_true", help="Use PseudoPy fast mode (requires pseudopy + scipy)")
     ap.add_argument("--instances", type=str, default=None, help='e.g. "0,1,2"')
     ap.add_argument("--steps", type=str, default=None, help='e.g. "0,200,1000"')
     ap.add_argument("--max_workers", type=int, default=None, help="Number of parallel workers (default: CPU count)")
@@ -314,7 +254,7 @@ def main():
     import multiprocessing
     max_workers = args.max_workers if args.max_workers is not None else multiprocessing.cpu_count()
     
-    print(f"Found {len(instances)} instances; {len(steps)} steps; fast={args.fast}; max_workers={max_workers}")
+    print(f"Found {len(instances)} instances; {len(steps)} steps; max_workers={max_workers}")
     print(f"CPU count: {multiprocessing.cpu_count()}")
     print(f"Writing GIFs to: {args.out_dir}")
 
@@ -327,12 +267,9 @@ def main():
                 args.out_dir,
                 i,
                 args.which,
-                args.epsilon,
-                args.grid_size,
                 args.fps,
                 args.pad,
                 steps,
-                args.fast,
             ))
 
         # Use tqdm to track instance completion
