@@ -4,6 +4,7 @@ import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
 import Level0_Architecture from "./components/Level0_Architecture";
 import Level1_ThomsonSphere from "./components/Level1_ThomsonSphere";
 import Level2_InteractiveImage from "./components/Level2_InteractiveImage";
+import GroupActionVisualization from "./components/GroupActionVisualization";
 import { generateFeatureMatrix } from "./utils/superposition";
 import "./App.css";
 
@@ -23,26 +24,33 @@ function App() {
   const [level0Open, setLevel0Open] = useState(true);
   const [level1Open, setLevel1Open] = useState(true);
   const [level2Open, setLevel2Open] = useState(true);
+  const [groupActionOpen, setGroupActionOpen] = useState(false);
 
   // Calculate dynamic heights based on open/closed states
   const calculateHeights = useMemo(() => {
     const collapsedHeight = 50; // Height of collapsed section in px
-    const openLevels = [level0Open, level1Open, level2Open].filter(Boolean).length;
+    const openLevels = [level0Open, level1Open, level2Open, groupActionOpen].filter(Boolean).length;
 
     if (openLevels === 0) {
-      return { level0: collapsedHeight, level1: collapsedHeight, level2: collapsedHeight };
+      return {
+        level0: collapsedHeight,
+        level1: collapsedHeight,
+        level2: collapsedHeight,
+        groupAction: collapsedHeight
+      };
     }
 
     // Calculate available viewport height after accounting for collapsed sections
-    const totalCollapsed = (3 - openLevels) * collapsedHeight;
+    const totalCollapsed = (4 - openLevels) * collapsedHeight;
     const availableHeight = `calc((100vh - ${totalCollapsed}px) / ${openLevels})`;
 
     return {
       level0: level0Open ? availableHeight : `${collapsedHeight}px`,
       level1: level1Open ? availableHeight : `${collapsedHeight}px`,
-      level2: level2Open ? availableHeight : `${collapsedHeight}px`
+      level2: level2Open ? availableHeight : `${collapsedHeight}px`,
+      groupAction: groupActionOpen ? availableHeight : `${collapsedHeight}px`
     };
-  }, [level0Open, level1Open, level2Open]);
+  }, [level0Open, level1Open, level2Open, groupActionOpen]);
 
   // Generate feature matrix W based on selected configuration
   const W = useMemo(() => {
@@ -171,6 +179,31 @@ function App() {
                 inputDim={selectedConfig}
                 hiddenDim={hiddenDim}
               />
+            </Canvas>
+          )}
+        </div>
+
+        {/* Group Action Visualization Section */}
+        <div
+          className={`level-section ${!groupActionOpen ? 'collapsed' : ''}`}
+          style={{ height: calculateHeights.groupAction }}
+        >
+          <div
+            className="level-label clickable"
+            onClick={() => setGroupActionOpen(!groupActionOpen)}
+          >
+            Group Actions on Polytopes (Γ ⊆ Sₚ)
+          </div>
+          {groupActionOpen && (
+            <Canvas className="canvas" style={{ background: '#0a0a0a' }}>
+              <PerspectiveCamera makeDefault position={[0, 0, 4]} />
+              <OrbitControls enableDamping dampingFactor={0.05} />
+              <ambientLight intensity={0.4} />
+              <directionalLight position={[5, 5, 5]} intensity={0.8} />
+              <directionalLight position={[-5, -5, -5]} intensity={0.4} />
+              <pointLight position={[0, 0, 0]} intensity={0.5} />
+
+              <GroupActionVisualization />
             </Canvas>
           )}
         </div>
