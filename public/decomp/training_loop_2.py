@@ -81,7 +81,7 @@ def train_model(
     output_path: str,
     total_steps: int = 50000,
     checkpoint_every: int = 500,
-    batch_size: int = 1024,
+    batch_size: int = 8192,
     lr: float = 1e-3,
     device: str = 'cuda',
     print_progress: bool = True,
