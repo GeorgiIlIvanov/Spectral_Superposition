@@ -81,7 +81,7 @@ def train_model(
     output_path: str,
     total_steps: int = 50000,
     checkpoint_every: int = 500,
-    batch_size: int = 8192,
+    batch_size: int = 1024,
     lr: float = 1e-3,
     device: str = 'cuda',
     print_progress: bool = True,
@@ -118,6 +118,8 @@ def train_model(
 
     device = torch.device(device)
     model = ReLUAutoencoder(n_features, m_hidden).to(device)
+    torch.set_float32_matmul_precision("high")
+    model = torch.compile(model)
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
 
     # Storage for checkpoints
