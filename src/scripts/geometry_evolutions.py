@@ -830,9 +830,22 @@ def generate_gif_for_instance(
         name_prefix = f"{layout}_{cfg_tag}"
     else:
         name_prefix = f"{layout}"
+    sparsity_tag = None
+    feature_prob = W_snaps.get("feature_probability", None)
+    if feature_prob is not None:
+        try:
+            # feature_probability is per-instance (and possibly per-feature); sparsity = 1 - p.
+            sparsity = 1.0 - float(np.mean(feature_prob[instance_id]))
+            sparsity_tag = f"sparsity_{sparsity:.3f}"
+        except Exception:
+            sparsity_tag = None
+
+    if sparsity_tag is None:
+        sparsity_tag = f"instance_{instance_id}"
+
     gif_path = os.path.join(
         out_dir,
-        f"{name_prefix}_instance_{instance_id}_{which}.gif",
+        f"{name_prefix}_{sparsity_tag}_{which}.gif",
     )
     save_start = time.time()
     imageio.mimsave(gif_path, frames, fps=fps, loop=0)
