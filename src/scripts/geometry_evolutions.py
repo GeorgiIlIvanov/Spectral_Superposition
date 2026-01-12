@@ -263,11 +263,11 @@ def generate_pseudospectrum(
     ax.cla()
 
     try:
-        from pseudopy import NonnormalAuto
+        from pseudopy_new import NonnormalAuto
         from scipy.linalg import eigvals as scipy_eigvals
     except Exception as e:
         raise RuntimeError(
-            "PseudoPy fast mode requires pseudopy and scipy to be installed."
+            f"PseudoPy fast mode requires pseudopy and scipy to be installed - exception {e}"
         ) from e
 
     # Set limits BEFORE plotting; re-apply after plotting as PseudoPy may change them.
@@ -977,7 +977,7 @@ def main():
                     pbar.set_postfix_str(f"✓ {os.path.basename(gif_path)}")
                     pbar.update(1)
                 except Exception as e:
-                    pbar.set_postfix_str(f"✗ Error: {str(e)[:80]}")
+                    pbar.set_postfix_str(f"✗ Error: {str(e)[:500]}")
                     pbar.update(1)
     print("Done.")
 
