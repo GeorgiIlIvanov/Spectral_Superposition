@@ -101,11 +101,11 @@ def generate_pseudospectrum(
     ax.cla()
 
     try:
-        from pseudopy import NonnormalAuto
+        from pseudopy_new import NonnormalAuto
         from scipy.linalg import eigvals as scipy_eigvals
     except Exception as e:
         raise RuntimeError(
-            "PseudoPy fast mode requires pseudopy and scipy to be installed."
+            f"PseudoPy fast mode requires pseudopy and scipy to be installed. Caught exception {e}"
         ) from e
 
     # Set limits BEFORE plotting; re-apply after plotting as PseudoPy may change them.

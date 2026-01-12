@@ -93,7 +93,7 @@ def generate_pseudospectrum(
     # ---- fast PseudoPy method ----
     # PseudoPy example usage is pseudo.plot(...); pyplot.show(). We omit show() and capture fig. citeturn0search3
     try:
-        from pseudopy import NonnormalAuto
+        from pseudopy_new import NonnormalAuto
         from scipy.linalg import eigvals as scipy_eigvals
     except Exception as e:
         raise RuntimeError(
