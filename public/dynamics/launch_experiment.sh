@@ -8,6 +8,7 @@ set -e
 
 # === CONFIGURATION ===
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+VENV_DIR="$SCRIPT_DIR/venv"
 RESULTS_DIR="${1:-$SCRIPT_DIR/results_v2}"
 NUM_GPUS="${2:-8}"
 WORKERS_PER_GPU="${3:-4}"
@@ -65,12 +66,14 @@ check_disk_space() {
 check_gpus() {
     echo -e "${YELLOW}GPU Check:${NC}"
 
-    if ! python -c "import torch; assert torch.cuda.is_available()" 2>/dev/null; then
+    local PYTHON="$VENV_DIR/bin/python"
+
+    if ! $PYTHON -c "import torch; assert torch.cuda.is_available()" 2>/dev/null; then
         echo -e "${RED}ERROR: CUDA not available${NC}"
         return 1
     fi
 
-    local actual_gpus=$(python -c "import torch; print(torch.cuda.device_count())")
+    local actual_gpus=$($PYTHON -c "import torch; print(torch.cuda.device_count())")
     echo "  Available GPUs: $actual_gpus"
 
     if [[ "$actual_gpus" -lt "$NUM_GPUS" ]]; then
@@ -79,7 +82,7 @@ check_gpus() {
     fi
 
     # Show GPU info
-    python -c "
+    $PYTHON -c "
 import torch
 for i in range(torch.cuda.device_count()):
     props = torch.cuda.get_device_properties(i)
@@ -93,15 +96,23 @@ for i in range(torch.cuda.device_count()):
 check_dependencies() {
     echo -e "${YELLOW}Dependency Check:${NC}"
 
+    # Check venv exists
+    if [[ ! -d "$VENV_DIR" ]]; then
+        echo -e "${RED}ERROR: Virtual environment not found at $VENV_DIR${NC}"
+        echo "  Create with: python3 -m venv venv && source venv/bin/activate && pip install torch numpy h5py tqdm"
+        return 1
+    fi
+
+    local PYTHON="$VENV_DIR/bin/python"
     local missing=()
 
-    python -c "import torch" 2>/dev/null || missing+=("torch")
-    python -c "import h5py" 2>/dev/null || missing+=("h5py")
-    python -c "import numpy" 2>/dev/null || missing+=("numpy")
+    $PYTHON -c "import torch" 2>/dev/null || missing+=("torch")
+    $PYTHON -c "import h5py" 2>/dev/null || missing+=("h5py")
+    $PYTHON -c "import numpy" 2>/dev/null || missing+=("numpy")
 
     if [[ ${#missing[@]} -gt 0 ]]; then
         echo -e "${RED}ERROR: Missing Python packages: ${missing[*]}${NC}"
-        echo "  Install with: pip install ${missing[*]}"
+        echo "  Install with: source venv/bin/activate && pip install ${missing[*]}"
         return 1
     fi
 
@@ -157,16 +168,21 @@ start_experiment() {
     # Create the actual runner script
     cat > "$LOG_DIR/runner.sh" << 'RUNNER_EOF'
 #!/bin/bash
-cd "$(dirname "$0")/.."
+SCRIPT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+cd "$SCRIPT_DIR"
 
 RESULTS_DIR="$1"
 NUM_GPUS="$2"
 WORKERS_PER_GPU="$3"
 LOG_FILE="$4"
 
+# Activate virtual environment
+source "$SCRIPT_DIR/venv/bin/activate"
+
 echo "========================================"
 echo "Experiment started at $(date)"
 echo "PID: $$"
+echo "Python: $(which python)"
 echo "Results: $RESULTS_DIR"
 echo "GPUs: $NUM_GPUS"
 echo "Workers/GPU: $WORKERS_PER_GPU"
@@ -312,7 +328,7 @@ case "${1:-start}" in
         ;;
 
     verify)
-        python "$SCRIPT_DIR/verify_results.py" --results-dir "$RESULTS_DIR"
+        "$VENV_DIR/bin/python" "$SCRIPT_DIR/verify_results.py" --results-dir "$RESULTS_DIR"
         ;;
 
     *)
