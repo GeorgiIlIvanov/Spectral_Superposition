@@ -24,3 +24,8 @@ npm-debug.log*
 
 # Temporary files
 .cache/
+
+#Checkpoint data
+public/dynamics/start/
+public/dynamics/venv/
+*.h5
