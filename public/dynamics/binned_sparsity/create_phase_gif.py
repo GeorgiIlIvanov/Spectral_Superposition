@@ -4,7 +4,7 @@ Create animated GIF of spectral phase diagram for binned sparsity experiment.
 
 Features are colored by their discrete sparsity S ∈ {0.1, 0.2, ..., 0.9}.
 
-Color gradient (warm): #FF4E50 (S=0.1) → #FC913A → #F9D423 (S=0.9)
+Color gradient: full rainbow (0.1 to 0.9)
 """
 
 import h5py
@@ -12,7 +12,6 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from matplotlib.colors import LinearSegmentedColormap
 from pathlib import Path
 import imageio.v2 as imageio
 import os
@@ -25,12 +24,8 @@ OUTPUT_DIR = Path('.')
 # Sparsity bins
 SPARSITY_VALUES = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 
-# Warm colormap for sparsity: #FF4E50 → #FC913A → #F9D423
-def create_warm_cmap():
-    colors = ['#FF4E50', '#FC913A', '#F9D423']
-    return LinearSegmentedColormap.from_list('warm_sparsity', colors, N=256)
-
-WARM_CMAP = create_warm_cmap()
+# Rainbow colormap for sparsity
+RAINBOW_CMAP = plt.cm.rainbow
 
 
 def load_all_data(data_dir, sample_seeds=None):
@@ -104,7 +99,7 @@ def create_phase_gif(data_dir, output_dir, sample_seeds=64):
             X, Y, C = X[idx], Y[idx], C[idx]
 
         # Main scatter plot colored by sparsity
-        sc = ax.scatter(X, Y, c=C, cmap=WARM_CMAP, s=3, alpha=0.3,
+        sc = ax.scatter(X, Y, c=C, cmap=RAINBOW_CMAP, s=3, alpha=0.3,
                        rasterized=True, vmin=0, vmax=1)
 
         # Reference lines (D = ||W||^2 / μ)
