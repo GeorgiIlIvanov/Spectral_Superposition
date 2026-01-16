@@ -3,7 +3,6 @@
 Create animated GIF of spectral phase diagram for binned sparsity experiment.
 
 Features are colored by their discrete sparsity S ∈ {0.1, 0.2, ..., 0.9}.
-Tracers highlight features from each sparsity bin.
 
 Color gradient (warm): #FF4E50 (S=0.1) → #FC913A → #F9D423 (S=0.9)
 """
@@ -14,7 +13,6 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib.colors import LinearSegmentedColormap
-from matplotlib.lines import Line2D
 from pathlib import Path
 import imageio.v2 as imageio
 import os
@@ -57,38 +55,8 @@ def load_all_data(data_dir, sample_seeds=None):
     return all_data
 
 
-def select_tracer_features(sparsity_array, n_tracers_per_bin=3):
-    """
-    Select tracer feature indices from each discrete sparsity bin.
-    Returns list of tracer dicts.
-    """
-    tracers = []
-
-    for s_val in SPARSITY_VALUES:
-        # Find features with this exact sparsity
-        mask = np.isclose(sparsity_array, s_val)
-        indices = np.where(mask)[0]
-
-        if len(indices) > 0:
-            # Sample evenly from this bin
-            selected = np.linspace(0, len(indices) - 1, n_tracers_per_bin, dtype=int)
-            for sel_idx in selected:
-                idx = indices[sel_idx]
-                # Map sparsity 0.1-0.9 to colormap 0-1
-                color_val = (s_val - 0.1) / 0.8
-                color = WARM_CMAP(color_val)
-                tracers.append({
-                    'feature_idx': idx,
-                    'sparsity': s_val,
-                    'color': color,
-                })
-
-    return tracers
-
-
-def create_phase_gif(data_dir, output_dir, sample_seeds=64, n_tracers_per_bin=3,
-                     trail_length=10):
-    """Create phase diagram GIF with binned sparsity coloring and tracers."""
+def create_phase_gif(data_dir, output_dir, sample_seeds=64):
+    """Create phase diagram GIF with sparsity coloring."""
 
     all_data = load_all_data(data_dir, sample_seeds)
 
@@ -101,26 +69,6 @@ def create_phase_gif(data_dir, output_dir, sample_seeds=64, n_tracers_per_bin=3,
     print(f"Features: {n_features}")
     print(f"Seeds loaded: {len(all_data)}")
     print(f"Sparsity bins: {SPARSITY_VALUES}")
-
-    # Select tracer features
-    tracers = select_tracer_features(sparsity_per_feature, n_tracers_per_bin)
-    print(f"Tracers: {len(tracers)} features ({n_tracers_per_bin} per bin × {len(SPARSITY_VALUES)} bins)")
-
-    # Pre-compute tracer trajectories (average across seeds)
-    tracer_trajectories = []
-    for t in tracers:
-        idx = t['feature_idx']
-        # Average norm and dim across all seeds for this feature
-        norms_across_seeds = np.array([d['norms'][:, idx] for d in all_data])
-        dims_across_seeds = np.array([d['dims'][:, idx] for d in all_data])
-
-        tracer_trajectories.append({
-            'feature_idx': idx,
-            'sparsity': t['sparsity'],
-            'color': t['color'],
-            'norms_mean': norms_across_seeds.mean(axis=0),
-            'dims_mean': dims_across_seeds.mean(axis=0),
-        })
 
     # Create frames
     temp_dir = output_dir / 'gif_frames_binned'
@@ -165,31 +113,12 @@ def create_phase_gif(data_dir, output_dir, sample_seeds=64, n_tracers_per_bin=3,
             ax.plot(x_ref, x_ref / mu, '--', alpha=0.4, linewidth=1.5,
                    color='gray', label=f'μ={mu}' if mu <= 3 else '')
 
-        # Draw tracer trajectories with trails
-        for traj in tracer_trajectories:
-            if cp > 0:
-                trail_start = max(0, cp - trail_length)
-                trail_x = traj['norms_mean'][trail_start:cp+1]
-                trail_y = traj['dims_mean'][trail_start:cp+1]
-
-                # Draw trail with fading alpha
-                for i in range(len(trail_x) - 1):
-                    alpha = 0.2 + 0.6 * (i / max(1, len(trail_x) - 1))
-                    ax.plot(trail_x[i:i+2], trail_y[i:i+2],
-                           color=traj['color'], alpha=alpha, linewidth=2.5)
-
-            # Current position - larger circle with white stroke
-            current_x = traj['norms_mean'][cp]
-            current_y = traj['dims_mean'][cp]
-            ax.scatter(current_x, current_y, c=[traj['color']], s=200,
-                      edgecolors='white', linewidths=2.5, zorder=10, marker='o')
-
         ax.set_xlim(0, x_max)
         ax.set_ylim(0, 1.0)
         ax.set_xlabel(r'Feature Norm $\|W_i\|^2$', fontsize=14)
         ax.set_ylabel(r'Fractional Dimensionality $D_i$', fontsize=14)
         ax.set_title(f'Binned Sparsity Phase Diagram\n'
-                    f'$S \\in \\{{0.1, 0.2, ..., 0.9\\}}$ | m=256, n=1024 | Step {steps[cp]:,}',
+                    f'$S \in \{{0.1, 0.2, ..., 0.9\}}$ | m=256, n=1024 | Step {steps[cp]:,}',
                     fontsize=14, weight='bold')
         ax.grid(True, alpha=0.3)
 
@@ -199,19 +128,6 @@ def create_phase_gif(data_dir, output_dir, sample_seeds=64, n_tracers_per_bin=3,
         # Set colorbar ticks to show actual sparsity values
         cbar.set_ticks([(s - 0.1) / 0.8 for s in SPARSITY_VALUES])
         cbar.set_ticklabels([f'{s:.1f}' for s in SPARSITY_VALUES])
-
-        # Legend for tracer sparsity bins
-        legend_elements = []
-        for s in [0.1, 0.3, 0.5, 0.7, 0.9]:
-            color_val = (s - 0.1) / 0.8
-            color = WARM_CMAP(color_val)
-            legend_elements.append(
-                Line2D([0], [0], marker='o', color='w', markerfacecolor=color,
-                       markeredgecolor='white', markeredgewidth=1.5, markersize=12,
-                       label=f'S={s:.1f}')
-            )
-        ax.legend(handles=legend_elements, loc='upper right', title='Tracer Sparsity',
-                 fontsize=9, title_fontsize=10, framealpha=0.9)
 
         plt.tight_layout()
 
@@ -241,14 +157,9 @@ def main():
     parser = argparse.ArgumentParser(description='Create phase diagram GIF for binned sparsity')
     parser.add_argument('--sample-seeds', type=int, default=64,
                         help='Number of seeds to sample (default: 64)')
-    parser.add_argument('--n-tracers', type=int, default=3,
-                        help='Tracers per sparsity bin (default: 3)')
-    parser.add_argument('--trail-length', type=int, default=10,
-                        help='Trail length in frames (default: 10)')
     args = parser.parse_args()
 
-    create_phase_gif(DATA_DIR, OUTPUT_DIR, args.sample_seeds, args.n_tracers,
-                     args.trail_length)
+    create_phase_gif(DATA_DIR, OUTPUT_DIR, args.sample_seeds)
 
 
 if __name__ == '__main__':
