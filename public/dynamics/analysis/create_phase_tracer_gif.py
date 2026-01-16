@@ -172,7 +172,7 @@ def create_phase_tracer_gif(data_dir, output_dir, n_tracers_per_bin=5, trail_len
 
         # Main scatter plot with cool colormap (capacity m/n)
         sc = ax.scatter(X, Y, c=C, cmap=COOL_CMAP, s=3, alpha=0.3,
-                       rasterized=True, vmin=0, vmax=1)
+                       rasterized=True, vmin=0, vmax=0.5)
 
         # Reference lines
         x_ref = np.linspace(0, x_max, 100)
