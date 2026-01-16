@@ -133,7 +133,7 @@ def create_multi_experiment_gif(data_dir, output_dir, sample_every=5):
         with h5py.File(f, 'r') as hf:
             all_data.append({
                 'm': m,
-                'rho': 1024 / m,
+                'rho': m / 1024,
                 'steps': hf['checkpoint_steps'][:],
                 'norms': hf['feature_norms'][:],
                 'dims': hf['fractional_dims'][:],
@@ -188,7 +188,7 @@ def create_multi_experiment_gif(data_dir, output_dir, sample_every=5):
         ax.legend(loc='upper right', fontsize=9)
 
         cbar = plt.colorbar(sc, ax=ax)
-        cbar.set_label('Compression Ratio n/m', fontsize=11)
+        cbar.set_label('Capacity Ratio m/n', fontsize=11)
 
         plt.tight_layout()
 
