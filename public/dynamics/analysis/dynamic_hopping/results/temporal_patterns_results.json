@@ -1,0 +1,243 @@
+{
+  "timestamp": "2026-01-21T17:38:17.473403",
+  "config": {
+    "z_threshold": 4.0,
+    "local_window_size": 10,
+    "hopping_categories": {
+      "stable": 0.5,
+      "moderate": 1.5,
+      "active": 3.0
+    }
+  },
+  "n_files_processed": 5,
+  "summary_by_sparsity": {
+    "low": {
+      "n_experiments": 5,
+      "mean_trend_slope": -0.0007635505584894589,
+      "trend_direction_counts": {
+        "stable": 5
+      },
+      "mean_synchrony_ratio": 1331.1171308320943,
+      "mean_sigma": 1.4825999317125138e-09,
+      "volatility_class_means": {
+        "stable": 1024.0
+      },
+      "temporal_pattern_means": {
+        "converging": 1024.0
+      }
+    }
+  },
+  "per_file_results": [
+    {
+      "filename": "n1024_m112_s0.000000_seed0_rayleigh",
+      "sparsity": 0.0,
+      "m_hidden": 112,
+      "seed": 0,
+      "n_checkpoints": 56,
+      "n_features": 1024,
+      "phase_analysis": {
+        "n_peaks": 0,
+        "n_troughs": 0,
+        "peak_indices": [],
+        "trough_indices": [],
+        "trend_slope": -0.0007672068097316008,
+        "trend_intercept": 0.02707234379044949,
+        "trend_r_squared": 0.119113752948221,
+        "trend_p_value": 0.017507036302231143,
+        "trend_direction": "stable",
+        "mean_volatility_early": 0.023015930441863473,
+        "mean_volatility_mid": 0.002912960956586552,
+        "mean_volatility_late": 0.003200204056120537
+      },
+      "volatility_class_counts": {
+        "stable": 1024
+      },
+      "temporal_pattern_counts": {
+        "converging": 1024
+      },
+      "synchrony_analysis": {
+        "synchrony_ratio": 1389.5040607258745,
+        "mean_simultaneous_jumps": 166.4909090909091,
+        "max_simultaneous_jumps": 1024,
+        "peak_synchrony_times": [
+          0,
+          1,
+          2
+        ],
+        "p_jump": 0.16258877840909092,
+        "interpretation": "synchronized"
+      },
+      "mean_feature_sigma": 1.4825999317125138e-09,
+      "median_feature_sigma": 1.4825999317125138e-09
+    },
+    {
+      "filename": "n1024_m112_s0.000000_seed1_rayleigh",
+      "sparsity": 0.0,
+      "m_hidden": 112,
+      "seed": 1,
+      "n_checkpoints": 56,
+      "n_features": 1024,
+      "phase_analysis": {
+        "n_peaks": 0,
+        "n_troughs": 0,
+        "peak_indices": [],
+        "trough_indices": [],
+        "trend_slope": -0.0007985066742540614,
+        "trend_intercept": 0.02822857069378336,
+        "trend_r_squared": 0.12643773371930334,
+        "trend_p_value": 0.014172994334109417,
+        "trend_direction": "stable",
+        "mean_volatility_early": 0.024122142592468285,
+        "mean_volatility_mid": 0.0030553986616963513,
+        "mean_volatility_late": 0.0033024118915632172
+      },
+      "volatility_class_counts": {
+        "stable": 1024
+      },
+      "temporal_pattern_counts": {
+        "converging": 1024
+      },
+      "synchrony_analysis": {
+        "synchrony_ratio": 1259.815133536516,
+        "mean_simultaneous_jumps": 181.87272727272727,
+        "max_simultaneous_jumps": 1024,
+        "peak_synchrony_times": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "p_jump": 0.17761008522727273,
+        "interpretation": "synchronized"
+      },
+      "mean_feature_sigma": 1.4825999317125138e-09,
+      "median_feature_sigma": 1.4825999317125138e-09
+    },
+    {
+      "filename": "n1024_m112_s0.020204_seed0_rayleigh",
+      "sparsity": 0.02020408163265306,
+      "m_hidden": 112,
+      "seed": 0,
+      "n_checkpoints": 56,
+      "n_features": 1024,
+      "phase_analysis": {
+        "n_peaks": 0,
+        "n_troughs": 0,
+        "peak_indices": [],
+        "trough_indices": [],
+        "trend_slope": -0.0007541600326515394,
+        "trend_intercept": 0.0264644457839154,
+        "trend_r_squared": 0.11728274404245159,
+        "trend_p_value": 0.018455486314425285,
+        "trend_direction": "stable",
+        "mean_volatility_early": 0.022321923492932664,
+        "mean_volatility_mid": 0.0030021843293424055,
+        "mean_volatility_late": 0.002857384680265085
+      },
+      "volatility_class_counts": {
+        "stable": 1024
+      },
+      "temporal_pattern_counts": {
+        "converging": 1024
+      },
+      "synchrony_analysis": {
+        "synchrony_ratio": 1374.2579410996957,
+        "mean_simultaneous_jumps": 163.74545454545455,
+        "max_simultaneous_jumps": 1024,
+        "peak_synchrony_times": [
+          0,
+          1,
+          2
+        ],
+        "p_jump": 0.15990767045454546,
+        "interpretation": "synchronized"
+      },
+      "mean_feature_sigma": 1.4825999317125138e-09,
+      "median_feature_sigma": 1.4825999317125138e-09
+    },
+    {
+      "filename": "n1024_m112_s0.020204_seed1_rayleigh",
+      "sparsity": 0.02020408163265306,
+      "m_hidden": 112,
+      "seed": 1,
+      "n_checkpoints": 56,
+      "n_features": 1024,
+      "phase_analysis": {
+        "n_peaks": 0,
+        "n_troughs": 0,
+        "peak_indices": [],
+        "trough_indices": [],
+        "trend_slope": -0.0007711204540060699,
+        "trend_intercept": 0.027273480168067812,
+        "trend_r_squared": 0.12033339064476166,
+        "trend_p_value": 0.016902284666834105,
+        "trend_direction": "stable",
+        "mean_volatility_early": 0.02325948174070239,
+        "mean_volatility_mid": 0.0030212018055220113,
+        "mean_volatility_late": 0.003190056382483597
+      },
+      "volatility_class_counts": {
+        "stable": 1024
+      },
+      "temporal_pattern_counts": {
+        "converging": 1024
+      },
+      "synchrony_analysis": {
+        "synchrony_ratio": 1249.2303340690623,
+        "mean_simultaneous_jumps": 175.8,
+        "max_simultaneous_jumps": 1024,
+        "peak_synchrony_times": [
+          0,
+          1,
+          2
+        ],
+        "p_jump": 0.1716796875,
+        "interpretation": "synchronized"
+      },
+      "mean_feature_sigma": 1.4825999317125138e-09,
+      "median_feature_sigma": 1.4825999317125138e-09
+    },
+    {
+      "filename": "n1024_m112_s0.040408_seed0_rayleigh",
+      "sparsity": 0.04040816326530612,
+      "m_hidden": 112,
+      "seed": 0,
+      "n_checkpoints": 56,
+      "n_features": 1024,
+      "phase_analysis": {
+        "n_peaks": 0,
+        "n_troughs": 0,
+        "peak_indices": [],
+        "trough_indices": [],
+        "trend_slope": -0.0007267588218040227,
+        "trend_intercept": 0.02536500563063896,
+        "trend_r_squared": 0.11035332744204307,
+        "trend_p_value": 0.02253079403033004,
+        "trend_direction": "stable",
+        "mean_volatility_early": 0.021473759123748454,
+        "mean_volatility_mid": 0.0026211656891259594,
+        "mean_volatility_late": 0.0026552462742275296
+      },
+      "volatility_class_counts": {
+        "stable": 1024
+      },
+      "temporal_pattern_counts": {
+        "converging": 1024
+      },
+      "synchrony_analysis": {
+        "synchrony_ratio": 1382.7781847293224,
+        "mean_simultaneous_jumps": 161.61818181818182,
+        "max_simultaneous_jumps": 1024,
+        "peak_synchrony_times": [
+          0,
+          1,
+          2
+        ],
+        "p_jump": 0.1578302556818182,
+        "interpretation": "synchronized"
+      },
+      "mean_feature_sigma": 1.4825999317125138e-09,
+      "median_feature_sigma": 1.4825999317125138e-09
+    }
+  ]
+}

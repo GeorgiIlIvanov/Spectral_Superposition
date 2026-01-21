@@ -29,3 +29,4 @@ npm-debug.log*
 public/dynamics/start/
 public/dynamics/venv/
 *.h5
+*.npz
