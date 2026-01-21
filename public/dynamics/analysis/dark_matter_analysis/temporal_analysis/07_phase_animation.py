@@ -20,7 +20,7 @@ import argparse
 
 
 INPUT_DIR = Path('/home/georgi/Spectral_Superposition/public/dynamics/start')
-OUTPUT_DIR = Path('/home/georgi/Spectral_Superposition/public/dynamics/analysis/temporal_analysis')
+OUTPUT_DIR = Path('/home/georgi/Spectral_Superposition/public/dynamics/analysis/dark_matter_analysis/temporal_analysis')
 PLOTS_DIR = OUTPUT_DIR / 'plots'
 RESULTS_DIR = OUTPUT_DIR / 'results'
 

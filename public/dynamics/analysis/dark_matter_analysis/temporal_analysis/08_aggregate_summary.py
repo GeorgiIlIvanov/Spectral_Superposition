@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 
 
-OUTPUT_DIR = Path('/home/georgi/Spectral_Superposition/public/dynamics/analysis/temporal_analysis')
+OUTPUT_DIR = Path('/home/georgi/Spectral_Superposition/public/dynamics/analysis/dark_matter_analysis/temporal_analysis')
 PLOTS_DIR = OUTPUT_DIR / 'plots'
 RESULTS_DIR = OUTPUT_DIR / 'results'
 

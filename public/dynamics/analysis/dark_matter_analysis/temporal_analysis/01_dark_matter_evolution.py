@@ -22,10 +22,11 @@ import matplotlib.pyplot as plt
 import json
 import argparse
 from collections import defaultdict
+from multiprocessing import Pool, cpu_count
 
 
 INPUT_DIR = Path('/home/georgi/Spectral_Superposition/public/dynamics/start')
-OUTPUT_DIR = Path('/home/georgi/Spectral_Superposition/public/dynamics/analysis/temporal_analysis')
+OUTPUT_DIR = Path('/home/georgi/Spectral_Superposition/public/dynamics/analysis/dark_matter_analysis/temporal_analysis')
 PLOTS_DIR = OUTPUT_DIR / 'plots'
 RESULTS_DIR = OUTPUT_DIR / 'results'
 
@@ -40,76 +41,72 @@ SPARSITY_BUCKETS = {
 R2_THRESHOLD = 0.9  # Dark matter threshold
 
 
-def compute_cumulative_r2(feature_norms, fractional_dims, up_to_checkpoint):
+def compute_r2_vectorized(x, y):
     """
-    Compute R² for D_i vs ||W_i||² using checkpoints [0, up_to_checkpoint].
+    Vectorized R² computation for multiple features simultaneously.
 
     Args:
-        feature_norms: (T, n) array of ||W_i||² at each checkpoint
-        fractional_dims: (T, n) array of D_i at each checkpoint
-        up_to_checkpoint: compute R² using checkpoints 0 to this index (inclusive)
+        x: (T, n) array - independent variable for each feature
+        y: (T, n) array - dependent variable for each feature
 
     Returns:
         r2_values: (n,) array of R² for each feature
     """
-    n_features = feature_norms.shape[1]
-    r2_values = np.zeros(n_features)
+    # Mask invalid values
+    valid = np.isfinite(x) & np.isfinite(y) & (x > 1e-8)
 
-    for i in range(n_features):
-        x = feature_norms[:up_to_checkpoint+1, i]
-        y = fractional_dims[:up_to_checkpoint+1, i]
+    # Replace invalid with nan for computation
+    x_masked = np.where(valid, x, np.nan)
+    y_masked = np.where(valid, y, np.nan)
 
-        # Filter valid values
-        valid = np.isfinite(x) & np.isfinite(y) & (x > 1e-8)
-        if np.sum(valid) < 5:
-            r2_values[i] = np.nan
-            continue
+    # Count valid points per feature
+    n_valid = np.sum(valid, axis=0)
 
-        x_valid = x[valid]
-        y_valid = y[valid]
+    # Compute means (ignoring nan)
+    x_mean = np.nanmean(x_masked, axis=0)
+    y_mean = np.nanmean(y_masked, axis=0)
 
-        # Linear regression
-        if np.std(x_valid) < 1e-10:
-            r2_values[i] = np.nan
-            continue
+    # Compute variance and covariance
+    x_centered = x_masked - x_mean
+    y_centered = y_masked - y_mean
 
-        slope, intercept, r_val, p_val, stderr = stats.linregress(x_valid, y_valid)
-        r2_values[i] = r_val ** 2
+    ss_xx = np.nansum(x_centered ** 2, axis=0)
+    ss_yy = np.nansum(y_centered ** 2, axis=0)
+    ss_xy = np.nansum(x_centered * y_centered, axis=0)
 
-    return r2_values
+    # Correlation coefficient
+    with np.errstate(divide='ignore', invalid='ignore'):
+        r = ss_xy / np.sqrt(ss_xx * ss_yy)
+        r2 = r ** 2
+
+    # Mask features with insufficient data or zero variance
+    r2 = np.where((n_valid >= 5) & (ss_xx > 1e-10), r2, np.nan)
+
+    return r2
+
+
+def compute_cumulative_r2(feature_norms, fractional_dims, up_to_checkpoint):
+    """
+    Compute R² for D_i vs ||W_i||² using checkpoints [0, up_to_checkpoint].
+    Vectorized version - processes all features simultaneously.
+    """
+    x = feature_norms[:up_to_checkpoint+1, :]
+    y = fractional_dims[:up_to_checkpoint+1, :]
+    return compute_r2_vectorized(x, y)
 
 
 def compute_windowed_r2(feature_norms, fractional_dims, center_checkpoint, window_size=10):
     """
     Compute R² using a sliding window around center_checkpoint.
+    Vectorized version - processes all features simultaneously.
     """
     n_checkpoints = feature_norms.shape[0]
     start = max(0, center_checkpoint - window_size // 2)
     end = min(n_checkpoints, center_checkpoint + window_size // 2 + 1)
 
-    n_features = feature_norms.shape[1]
-    r2_values = np.zeros(n_features)
-
-    for i in range(n_features):
-        x = feature_norms[start:end, i]
-        y = fractional_dims[start:end, i]
-
-        valid = np.isfinite(x) & np.isfinite(y) & (x > 1e-8)
-        if np.sum(valid) < 5:
-            r2_values[i] = np.nan
-            continue
-
-        x_valid = x[valid]
-        y_valid = y[valid]
-
-        if np.std(x_valid) < 1e-10:
-            r2_values[i] = np.nan
-            continue
-
-        slope, intercept, r_val, p_val, stderr = stats.linregress(x_valid, y_valid)
-        r2_values[i] = r_val ** 2
-
-    return r2_values
+    x = feature_norms[start:end, :]
+    y = fractional_dims[start:end, :]
+    return compute_r2_vectorized(x, y)
 
 
 def analyze_file(filepath):
@@ -354,9 +351,19 @@ def create_visualizations(summary, output_dir):
     plt.close()
 
 
+def process_file_wrapper(filepath):
+    """Wrapper for multiprocessing - handles exceptions."""
+    try:
+        return analyze_file(filepath)
+    except Exception as e:
+        print(f"Error processing {filepath.name}: {e}")
+        return None
+
+
 def main():
     parser = argparse.ArgumentParser(description='Dark Matter Evolution Analysis')
     parser.add_argument('--sample', type=int, default=None, help='Process only N files for testing')
+    parser.add_argument('--workers', type=int, default=None, help='Number of parallel workers')
     args = parser.parse_args()
 
     PLOTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -374,15 +381,16 @@ def main():
         files = files[:args.sample]
         print(f"Sampling {len(files)} files for testing")
 
-    # Process all files
+    # Determine number of workers
+    n_workers = args.workers if args.workers else min(cpu_count(), 32)
+    print(f"Using {n_workers} parallel workers")
+
+    # Process all files in parallel
     all_results = []
-    for filepath in tqdm(files, desc="Processing files"):
-        try:
-            result = analyze_file(filepath)
-            all_results.append(result)
-        except Exception as e:
-            print(f"Error processing {filepath.name}: {e}")
-            continue
+    with Pool(n_workers) as pool:
+        results = list(tqdm(pool.imap(process_file_wrapper, files),
+                           total=len(files), desc="Processing files"))
+        all_results = [r for r in results if r is not None]
 
     print(f"Successfully processed {len(all_results)} files")
 
