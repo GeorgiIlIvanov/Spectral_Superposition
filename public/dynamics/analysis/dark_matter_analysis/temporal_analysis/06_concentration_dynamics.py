@@ -9,7 +9,6 @@ Key question: Do features become more concentrated over time (cleaner eigenspace
 import h5py
 import numpy as np
 from pathlib import Path
-from scipy import stats
 from tqdm import tqdm
 import matplotlib
 matplotlib.use('Agg')
@@ -17,6 +16,8 @@ import matplotlib.pyplot as plt
 import json
 import argparse
 from collections import defaultdict
+from multiprocessing import Pool, cpu_count
+import os
 
 
 INPUT_DIR = Path('/home/georgi/Spectral_Superposition/public/dynamics/start')
@@ -26,6 +27,57 @@ PLOTS_DIR = OUTPUT_DIR / 'plots'
 RESULTS_DIR = OUTPUT_DIR / 'results'
 
 R2_THRESHOLD = 0.9
+
+
+def compute_r2_vectorized(x, y):
+    """Vectorized R² computation for all features at once.
+
+    Args:
+        x: (T, n_features) array of feature norms
+        y: (T, n_features) array of fractional dims
+
+    Returns:
+        r2: (n_features,) array of R² values
+    """
+    valid = np.isfinite(x) & np.isfinite(y) & (x > 1e-8)
+    x_masked = np.where(valid, x, np.nan)
+    y_masked = np.where(valid, y, np.nan)
+
+    n_valid = np.sum(valid, axis=0)
+    x_mean = np.nanmean(x_masked, axis=0)
+    y_mean = np.nanmean(y_masked, axis=0)
+
+    x_centered = x_masked - x_mean
+    y_centered = y_masked - y_mean
+
+    ss_xx = np.nansum(x_centered ** 2, axis=0)
+    ss_yy = np.nansum(y_centered ** 2, axis=0)
+    ss_xy = np.nansum(x_centered * y_centered, axis=0)
+
+    with np.errstate(divide='ignore', invalid='ignore'):
+        r = ss_xy / np.sqrt(ss_xx * ss_yy)
+        r2 = r ** 2
+
+    # Invalidate results with insufficient data
+    r2 = np.where((n_valid >= 5) & (ss_xx > 1e-10), r2, np.nan)
+    return r2
+
+
+def fast_pearsonr(x, y):
+    """Fast Pearson correlation without scipy."""
+    valid = np.isfinite(x) & np.isfinite(y)
+    if np.sum(valid) < 3:
+        return np.nan
+    x_v = x[valid]
+    y_v = y[valid]
+    x_centered = x_v - np.mean(x_v)
+    y_centered = y_v - np.mean(y_v)
+    ss_xx = np.sum(x_centered ** 2)
+    ss_yy = np.sum(y_centered ** 2)
+    ss_xy = np.sum(x_centered * y_centered)
+    if ss_xx < 1e-10 or ss_yy < 1e-10:
+        return np.nan
+    return ss_xy / np.sqrt(ss_xx * ss_yy)
 
 
 def compute_concentration_entropy(weights, U):
@@ -90,17 +142,8 @@ def analyze_file(input_path, svd_path):
     mean_entropy = np.mean(all_entropies, axis=1)
     std_entropy = np.std(all_entropies, axis=1)
 
-    # Compute final R² for each feature
-    final_r2 = np.zeros(n_features)
-    for i in range(n_features):
-        x = feature_norms[:, i]
-        y = fractional_dims[:, i]
-        valid = np.isfinite(x) & np.isfinite(y) & (x > 1e-8)
-        if np.sum(valid) < 5:
-            final_r2[i] = np.nan
-            continue
-        _, _, r_val, _, _ = stats.linregress(x[valid], y[valid])
-        final_r2[i] = r_val ** 2
+    # Compute final R² for each feature - vectorized
+    final_r2 = compute_r2_vectorized(feature_norms, fractional_dims)
 
     # Correlation between concentration and R²
     valid_r2 = np.isfinite(final_r2)
@@ -108,8 +151,8 @@ def analyze_file(input_path, svd_path):
     final_entropies = all_entropies[-1]
 
     if np.sum(valid_r2) > 10:
-        conc_r2_corr, _ = stats.pearsonr(final_concentrations[valid_r2], final_r2[valid_r2])
-        ent_r2_corr, _ = stats.pearsonr(final_entropies[valid_r2], final_r2[valid_r2])
+        conc_r2_corr = fast_pearsonr(final_concentrations[valid_r2], final_r2[valid_r2])
+        ent_r2_corr = fast_pearsonr(final_entropies[valid_r2], final_r2[valid_r2])
     else:
         conc_r2_corr, ent_r2_corr = np.nan, np.nan
 
@@ -145,6 +188,16 @@ def analyze_file(input_path, svd_path):
         'final_mean_entropy': float(np.mean(final_entropies)),
         'n_features': n_features,
     }
+
+
+def process_file_pair(args):
+    """Wrapper for multiprocessing with file pairs."""
+    input_path, svd_path = args
+    try:
+        return analyze_file(input_path, svd_path)
+    except Exception as e:
+        print(f"Error processing {svd_path.name}: {e}")
+        return None
 
 
 def aggregate_results(all_results):
@@ -291,6 +344,7 @@ def create_visualizations(summary, output_dir):
 def main():
     parser = argparse.ArgumentParser(description='Concentration Dynamics Analysis')
     parser.add_argument('--sample', type=int, default=None, help='Process only N files for testing')
+    parser.add_argument('--workers', type=int, default=None, help='Number of parallel workers')
     args = parser.parse_args()
 
     PLOTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -307,21 +361,29 @@ def main():
         svd_files = svd_files[:args.sample]
         print(f"Sampling {len(svd_files)} files for testing")
 
-    all_results = []
-    for svd_path in tqdm(svd_files, desc="Processing files"):
+    # Build list of (input_path, svd_path) pairs
+    file_pairs = []
+    for svd_path in svd_files:
         input_name = svd_path.stem.replace('svd_', '') + '.h5'
         input_path = INPUT_DIR / input_name
+        if input_path.exists():
+            file_pairs.append((input_path, svd_path))
 
-        if not input_path.exists():
-            continue
+    print(f"Found {len(file_pairs)} matching file pairs")
 
-        try:
-            result = analyze_file(input_path, svd_path)
-            all_results.append(result)
-        except Exception as e:
-            print(f"Error processing {svd_path.name}: {e}")
-            continue
+    # Determine number of workers
+    n_workers = args.workers if args.workers else min(16, cpu_count())
+    print(f"Using {n_workers} parallel workers")
 
+    # Process files in parallel
+    with Pool(n_workers) as pool:
+        results = list(tqdm(
+            pool.imap(process_file_pair, file_pairs),
+            total=len(file_pairs),
+            desc="Processing files"
+        ))
+
+    all_results = [r for r in results if r is not None]
     print(f"Successfully processed {len(all_results)} files")
 
     summary = aggregate_results(all_results)

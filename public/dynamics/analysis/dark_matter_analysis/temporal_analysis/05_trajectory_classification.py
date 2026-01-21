@@ -15,7 +15,6 @@ Trajectory types:
 import h5py
 import numpy as np
 from pathlib import Path
-from scipy import stats
 from scipy.signal import find_peaks
 from tqdm import tqdm
 import matplotlib
@@ -24,12 +23,33 @@ import matplotlib.pyplot as plt
 import json
 import argparse
 from collections import defaultdict
+from multiprocessing import Pool, cpu_count
+import os
 
 
 INPUT_DIR = Path('/home/georgi/Spectral_Superposition/public/dynamics/start')
 OUTPUT_DIR = Path('/home/georgi/Spectral_Superposition/public/dynamics/analysis/dark_matter_analysis/temporal_analysis')
 PLOTS_DIR = OUTPUT_DIR / 'plots'
 RESULTS_DIR = OUTPUT_DIR / 'results'
+
+
+def fast_linregress(x, y):
+    """Fast linear regression without scipy overhead."""
+    x_mean = np.mean(x)
+    y_mean = np.mean(y)
+    x_centered = x - x_mean
+    y_centered = y - y_mean
+    ss_xx = np.sum(x_centered ** 2)
+    ss_yy = np.sum(y_centered ** 2)
+    ss_xy = np.sum(x_centered * y_centered)
+
+    if ss_xx < 1e-10:
+        return np.nan, np.nan
+
+    slope = ss_xy / ss_xx
+    r = ss_xy / np.sqrt(ss_xx * ss_yy) if ss_yy > 1e-10 else 0
+    r2 = r ** 2
+    return slope, r2
 
 
 def classify_trajectory(norms, dims):
@@ -61,8 +81,7 @@ def classify_trajectory(norms, dims):
     if np.std(norms_v) < 1e-10:
         return 'static', {}
 
-    slope, intercept, r_val, _, _ = stats.linregress(norms_v, dims_v)
-    r2 = r_val ** 2
+    slope, r2 = fast_linregress(norms_v, dims_v)
 
     # Compute curvature (second derivative approximation)
     # Using finite differences on the ratio D/||W||²
@@ -90,14 +109,15 @@ def classify_trajectory(norms, dims):
         window_norms = norms_v[i:i + window_size]
         window_dims = dims_v[i:i + window_size]
         if np.std(window_norms) > 1e-10:
-            local_slope, _, _, _, _ = stats.linregress(window_norms, window_dims)
-            local_slopes.append(local_slope)
+            local_slope, _ = fast_linregress(window_norms, window_dims)
+            if not np.isnan(local_slope):
+                local_slopes.append(local_slope)
 
     slope_variation = np.std(local_slopes) / (np.abs(np.mean(local_slopes)) + 1e-10) if local_slopes else 0
 
     metrics = {
-        'r2': float(r2),
-        'slope': float(slope),
+        'r2': float(r2) if not np.isnan(r2) else 0.0,
+        'slope': float(slope) if not np.isnan(slope) else 0.0,
         'curvature': float(curvature),
         'curvature_std': float(curvature_std),
         'norm_sign_changes': int(norm_sign_changes),
@@ -184,6 +204,15 @@ def analyze_file(filepath):
         'sample_trajectories': sample_trajectories,
         'n_features': n_features,
     }
+
+
+def process_file_wrapper(filepath):
+    """Wrapper for multiprocessing."""
+    try:
+        return analyze_file(filepath)
+    except Exception as e:
+        print(f"Error processing {filepath.name}: {e}")
+        return None
 
 
 def aggregate_results(all_results):
@@ -340,6 +369,7 @@ def create_visualizations(summary, all_results, output_dir):
 def main():
     parser = argparse.ArgumentParser(description='Trajectory Classification Analysis')
     parser.add_argument('--sample', type=int, default=None, help='Process only N files for testing')
+    parser.add_argument('--workers', type=int, default=None, help='Number of parallel workers')
     args = parser.parse_args()
 
     PLOTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -356,15 +386,19 @@ def main():
         files = files[:args.sample]
         print(f"Sampling {len(files)} files for testing")
 
-    all_results = []
-    for filepath in tqdm(files, desc="Processing files"):
-        try:
-            result = analyze_file(filepath)
-            all_results.append(result)
-        except Exception as e:
-            print(f"Error processing {filepath.name}: {e}")
-            continue
+    # Determine number of workers
+    n_workers = args.workers if args.workers else min(16, cpu_count())
+    print(f"Using {n_workers} parallel workers")
 
+    # Process files in parallel
+    with Pool(n_workers) as pool:
+        results = list(tqdm(
+            pool.imap(process_file_wrapper, files),
+            total=len(files),
+            desc="Processing files"
+        ))
+
+    all_results = [r for r in results if r is not None]
     print(f"Successfully processed {len(all_results)} files")
 
     summary = aggregate_results(all_results)
