@@ -1,0 +1,11 @@
+{
+  "total_files": 3200,
+  "processed": 3200,
+  "successes": 3200,
+  "failures": 0,
+  "failed_files": [],
+  "elapsed_seconds": 669.6337201595306,
+  "output_size_bytes": 260079146075,
+  "num_workers": 8,
+  "completion_time": "2026-01-21T04:43:35.084369"
+}

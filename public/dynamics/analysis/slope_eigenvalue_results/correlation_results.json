@@ -1,0 +1,14 @@
+{
+  "n_clusters_analyzed": 12403,
+  "n_files": 3200,
+  "pearson_correlation": 0.9686489704664971,
+  "pearson_pvalue": 0.0,
+  "spearman_correlation": 0.6211170358233485,
+  "spearman_pvalue": 0.0,
+  "regression_a": 0.9431737274174617,
+  "regression_b": 0.02191670831917769,
+  "regression_r_squared": 0.9382808279858044,
+  "regression_pvalue": 0.0,
+  "slope_times_lambda_mean": 0.9447566444574139,
+  "slope_times_lambda_std": 0.10423762691111448
+}
