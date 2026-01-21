@@ -13,7 +13,6 @@ or intrinsic nonlinearity at each instant?
 import h5py
 import numpy as np
 from pathlib import Path
-from scipy import stats
 from tqdm import tqdm
 import matplotlib
 matplotlib.use('Agg')
@@ -21,6 +20,8 @@ import matplotlib.pyplot as plt
 import json
 import argparse
 from collections import defaultdict
+from multiprocessing import Pool, cpu_count
+import os
 
 
 INPUT_DIR = Path('/home/georgi/Spectral_Superposition/public/dynamics/start')
@@ -29,37 +30,98 @@ PLOTS_DIR = OUTPUT_DIR / 'plots'
 RESULTS_DIR = OUTPUT_DIR / 'results'
 
 
+def compute_slope_vectorized(x, y):
+    """Vectorized linear regression slope computation.
+
+    Args:
+        x: (window, n_features) array
+        y: (window, n_features) array
+
+    Returns:
+        slopes: (n_features,) array of slopes
+    """
+    valid = np.isfinite(x) & np.isfinite(y) & (x > 1e-8)
+    x_masked = np.where(valid, x, np.nan)
+    y_masked = np.where(valid, y, np.nan)
+
+    n_valid = np.sum(valid, axis=0)
+    x_mean = np.nanmean(x_masked, axis=0)
+    y_mean = np.nanmean(y_masked, axis=0)
+
+    x_centered = x_masked - x_mean
+    y_centered = y_masked - y_mean
+
+    ss_xx = np.nansum(x_centered ** 2, axis=0)
+    ss_xy = np.nansum(x_centered * y_centered, axis=0)
+
+    with np.errstate(divide='ignore', invalid='ignore'):
+        slopes = ss_xy / ss_xx
+
+    # Invalidate slopes with insufficient data or zero variance
+    slopes = np.where((n_valid >= 3) & (ss_xx > 1e-10), slopes, np.nan)
+    return slopes
+
+
+def compute_r2_vectorized(x, y):
+    """Vectorized R² computation for all features at once.
+
+    Args:
+        x: (T, n_features) array of feature norms
+        y: (T, n_features) array of fractional dims
+
+    Returns:
+        r2: (n_features,) array of R² values
+        slopes: (n_features,) array of slopes
+    """
+    valid = np.isfinite(x) & np.isfinite(y) & (x > 1e-8)
+    x_masked = np.where(valid, x, np.nan)
+    y_masked = np.where(valid, y, np.nan)
+
+    n_valid = np.sum(valid, axis=0)
+    x_mean = np.nanmean(x_masked, axis=0)
+    y_mean = np.nanmean(y_masked, axis=0)
+
+    x_centered = x_masked - x_mean
+    y_centered = y_masked - y_mean
+
+    ss_xx = np.nansum(x_centered ** 2, axis=0)
+    ss_yy = np.nansum(y_centered ** 2, axis=0)
+    ss_xy = np.nansum(x_centered * y_centered, axis=0)
+
+    with np.errstate(divide='ignore', invalid='ignore'):
+        r = ss_xy / np.sqrt(ss_xx * ss_yy)
+        r2 = r ** 2
+        slopes = ss_xy / ss_xx
+
+    # Invalidate results with insufficient data
+    r2 = np.where((n_valid >= 5) & (ss_xx > 1e-10), r2, np.nan)
+    slopes = np.where((n_valid >= 5) & (ss_xx > 1e-10), slopes, np.nan)
+
+    return r2, slopes
+
+
 def compute_instantaneous_slope(feature_norms, fractional_dims, window=5):
     """
     Compute instantaneous slope dD/d||W||² at each checkpoint using a sliding window.
+    Vectorized implementation for speed.
 
     Returns:
         slopes: (T, n) array of instantaneous slopes
-        slope_validity: (T, n) boolean array indicating valid slopes
     """
     n_checkpoints, n_features = feature_norms.shape
     slopes = np.full((n_checkpoints, n_features), np.nan)
 
+    half_window = window // 2
     for t in range(n_checkpoints):
-        start = max(0, t - window // 2)
-        end = min(n_checkpoints, t + window // 2 + 1)
+        start = max(0, t - half_window)
+        end = min(n_checkpoints, t + half_window + 1)
 
         if end - start < 3:
             continue
 
-        for i in range(n_features):
-            x = feature_norms[start:end, i]
-            y = fractional_dims[start:end, i]
-
-            valid = np.isfinite(x) & np.isfinite(y) & (x > 1e-8)
-            if np.sum(valid) < 3:
-                continue
-
-            if np.std(x[valid]) < 1e-10:
-                continue
-
-            slope, _, _, _, _ = stats.linregress(x[valid], y[valid])
-            slopes[t, i] = slope
+        x = feature_norms[start:end, :]
+        y = fractional_dims[start:end, :]
+        slopes[t, :] = compute_slope_vectorized(x, y)
 
     return slopes
 
@@ -84,20 +146,8 @@ def analyze_file(filepath):
     slope_stds = np.nanstd(inst_slopes, axis=0)  # (n,)
     slope_cv = slope_stds / np.abs(slope_means + 1e-10)  # Coefficient of variation
 
-    # Compute final cumulative R²
-    final_r2 = np.zeros(n_features)
-    final_slope = np.zeros(n_features)
-    for i in range(n_features):
-        x = feature_norms[:, i]
-        y = fractional_dims[:, i]
-        valid = np.isfinite(x) & np.isfinite(y) & (x > 1e-8)
-        if np.sum(valid) < 5:
-            final_r2[i] = np.nan
-            final_slope[i] = np.nan
-            continue
-        slope, _, r_val, _, _ = stats.linregress(x[valid], y[valid])
-        final_r2[i] = r_val ** 2
-        final_slope[i] = slope
+    # Compute final cumulative R² - vectorized
+    final_r2, final_slope = compute_r2_vectorized(feature_norms, fractional_dims)
 
     # Identify features by slope stability
     # Stable: low CV, slope doesn't change much
@@ -164,6 +214,15 @@ def analyze_file(filepath):
         'sample_dims': fractional_dims[:, sample_indices].tolist() if sample_indices else [],
         'sample_r2': final_r2[sample_indices].tolist() if sample_indices else [],
     }
+
+
+def process_file_wrapper(filepath):
+    """Wrapper for multiprocessing."""
+    try:
+        return analyze_file(filepath)
+    except Exception as e:
+        print(f"Error processing {filepath.name}: {e}")
+        return None
 
 
 def aggregate_results(all_results):
@@ -319,6 +378,7 @@ def create_visualizations(summary, all_results, output_dir):
 def main():
     parser = argparse.ArgumentParser(description='Instantaneous Linearity Analysis')
     parser.add_argument('--sample', type=int, default=None, help='Process only N files for testing')
+    parser.add_argument('--workers', type=int, default=None, help='Number of parallel workers')
     args = parser.parse_args()
 
     PLOTS_DIR.mkdir(parents=True, exist_ok=True)
@@ -335,15 +395,19 @@ def main():
         files = files[:args.sample]
         print(f"Sampling {len(files)} files for testing")
 
-    all_results = []
-    for filepath in tqdm(files, desc="Processing files"):
-        try:
-            result = analyze_file(filepath)
-            all_results.append(result)
-        except Exception as e:
-            print(f"Error processing {filepath.name}: {e}")
-            continue
+    # Determine number of workers
+    n_workers = args.workers if args.workers else min(16, cpu_count())
+    print(f"Using {n_workers} parallel workers")
 
+    # Process files in parallel
+    with Pool(n_workers) as pool:
+        results = list(tqdm(
+            pool.imap(process_file_wrapper, files),
+            total=len(files),
+            desc="Processing files"
+        ))
+
+    all_results = [r for r in results if r is not None]
     print(f"Successfully processed {len(all_results)} files")
 
     summary = aggregate_results(all_results)
