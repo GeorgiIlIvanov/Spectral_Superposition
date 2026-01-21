@@ -16,7 +16,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR"
 
 # Activate virtual environment
-source ../../venv/bin/activate
+source /home/georgi/Spectral_Superposition/public/dynamics/venv/bin/activate
 
 # Parse arguments
 SAMPLE_ARG=""
