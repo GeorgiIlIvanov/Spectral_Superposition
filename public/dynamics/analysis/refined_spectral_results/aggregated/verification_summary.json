@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-01-22T04:22:43.307597",
+  "n_files": 3200,
+  "mean_pearson_correlation": 0.9999997838027775,
+  "std_pearson_correlation": 5.153844382565647e-07,
+  "mean_r_squared": 0.9990331709943712,
+  "std_r_squared": 0.003298868998351957,
+  "mean_relative_error": 0.00016430650327020402,
+  "mean_kappa_times_lambda": 6.983292586904988,
+  "std_kappa_times_lambda": 30.07223186050265
+}
