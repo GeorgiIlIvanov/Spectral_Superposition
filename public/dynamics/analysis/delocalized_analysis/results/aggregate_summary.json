@@ -1,0 +1,49 @@
+{
+  "timestamp": "2026-01-22T04:43:06.151607",
+  "total_elapsed_seconds": 18.263468265533447,
+  "experiments": {
+    "A": {
+      "name": "Eigengaps vs Projector Rotation",
+      "status": "success",
+      "elapsed_seconds": 2.4768478870391846
+    },
+    "B": {
+      "name": "Spectral Spread Metrics",
+      "status": "success",
+      "elapsed_seconds": 10.140797853469849
+    },
+    "C": {
+      "name": "Within-Cluster Variance",
+      "status": "success",
+      "elapsed_seconds": 2.40053391456604
+    },
+    "D_H": {
+      "name": "Global Projective Linearity",
+      "status": "success",
+      "elapsed_seconds": 3.2443902492523193
+    }
+  },
+  "key_findings": {
+    "A": {
+      "dm_rate": 0.0,
+      "gap_rotation_correlation": 1.0,
+      "gap_dm_correlation": NaN
+    },
+    "B": {
+      "dm_rate": 0.0,
+      "model_auc": 0.5,
+      "falsifier_auc": NaN,
+      "spread_separates_in_bulk": 0.0
+    },
+    "C": {
+      "bulk_higher_variance": 0.5,
+      "bulk_dm_rate": 0.0,
+      "spiked_dm_rate": 0.0
+    },
+    "D_H": {
+      "cross_sectional_r2": 0.9999974370002747,
+      "slope_near_unity_rate": 0.0,
+      "dm_stabilization_rate": 0.0
+    }
+  }
+}

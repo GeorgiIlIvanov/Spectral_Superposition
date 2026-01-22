@@ -1,0 +1,532 @@
+[
+  {
+    "run_id": "m112_s0.000000_seed0",
+    "m_hidden": 112,
+    "sparsity": 0.0,
+    "seed": 0,
+    "D_audit_summary": {
+      "late_alpha_all": 0.9990097284317017,
+      "late_alpha_dm": NaN,
+      "late_alpha_spiked": 0.9989384412765503,
+      "late_r2_all_mean": 0.9999968409538269,
+      "dm_slope_ratio": NaN,
+      "spiked_slope_ratio": 0.9999286532402039
+    },
+    "E_slope_matching": {
+      "error": "Insufficient valid comparisons"
+    },
+    "F_alpha_predictor": {
+      "trace_predictor": {
+        "correlation": 0.9999496936798096,
+        "p_value": 0.0,
+        "rmse": 0.007834057323634624
+      },
+      "median_kappa_predictor": {
+        "correlation": 0.9999978542327881,
+        "p_value": 0.0,
+        "rmse": 0.0003283122496213764
+      },
+      "mean_kappa_predictor": {
+        "correlation": 0.9833185076713562,
+        "p_value": 1.1768104503399814e-41,
+        "rmse": 0.01841624267399311
+      },
+      "best_predictor": "median_kappa"
+    },
+    "G_universal_diffusion": {
+      "error": "Insufficient DM features",
+      "n_dm": 0
+    },
+    "H_normalization": {
+      "n_dm_before": 0,
+      "n_dm_became_stable": 0,
+      "n_dm_still_unstable": 0,
+      "dm_stabilization_rate": 0.0,
+      "interpretation": {
+        "high_stabilization": "Nonlinearity largely due to global alpha(t)",
+        "low_stabilization": "Feature-specific diffusion remains dominant"
+      },
+      "r_cv_stats": {
+        "dm_mean": NaN,
+        "wb_mean": 0.0031274286601633188
+      }
+    }
+  },
+  {
+    "run_id": "m112_s0.000000_seed1",
+    "m_hidden": 112,
+    "sparsity": 0.0,
+    "seed": 1,
+    "D_audit_summary": {
+      "late_alpha_all": 0.9990277290344238,
+      "late_alpha_dm": NaN,
+      "late_alpha_spiked": 0.9989601373672485,
+      "late_r2_all_mean": 0.9999972581863403,
+      "dm_slope_ratio": NaN,
+      "spiked_slope_ratio": 0.9999323487281799
+    },
+    "E_slope_matching": {
+      "error": "Insufficient valid comparisons"
+    },
+    "F_alpha_predictor": {
+      "trace_predictor": {
+        "correlation": 0.9999423623085022,
+        "p_value": 0.0,
+        "rmse": 0.00788578949868679
+      },
+      "median_kappa_predictor": {
+        "correlation": 0.9999979138374329,
+        "p_value": 0.0,
+        "rmse": 0.00023631216026842594
+      },
+      "mean_kappa_predictor": {
+        "correlation": 0.9808555841445923,
+        "p_value": 4.698777958635404e-40,
+        "rmse": 0.019650829955935478
+      },
+      "best_predictor": "median_kappa"
+    },
+    "G_universal_diffusion": {
+      "error": "Insufficient DM features",
+      "n_dm": 0
+    },
+    "H_normalization": {
+      "n_dm_before": 0,
+      "n_dm_became_stable": 0,
+      "n_dm_still_unstable": 0,
+      "dm_stabilization_rate": 0.0,
+      "interpretation": {
+        "high_stabilization": "Nonlinearity largely due to global alpha(t)",
+        "low_stabilization": "Feature-specific diffusion remains dominant"
+      },
+      "r_cv_stats": {
+        "dm_mean": NaN,
+        "wb_mean": 0.003808823729937446
+      }
+    }
+  },
+  {
+    "run_id": "m112_s0.020204_seed0",
+    "m_hidden": 112,
+    "sparsity": 0.020204,
+    "seed": 0,
+    "D_audit_summary": {
+      "late_alpha_all": 0.9988096952438354,
+      "late_alpha_dm": NaN,
+      "late_alpha_spiked": 0.9987483024597168,
+      "late_r2_all_mean": 0.9999971389770508,
+      "dm_slope_ratio": NaN,
+      "spiked_slope_ratio": 0.9999385476112366
+    },
+    "E_slope_matching": {
+      "error": "Insufficient valid comparisons"
+    },
+    "F_alpha_predictor": {
+      "trace_predictor": {
+        "correlation": 0.9999499320983887,
+        "p_value": 0.0,
+        "rmse": 0.0077710882760584354
+      },
+      "median_kappa_predictor": {
+        "correlation": 0.9999977946281433,
+        "p_value": 0.0,
+        "rmse": 0.0003193768498022109
+      },
+      "mean_kappa_predictor": {
+        "correlation": 0.9833934307098389,
+        "p_value": 1.0431265768433938e-41,
+        "rmse": 0.01766210049390793
+      },
+      "best_predictor": "median_kappa"
+    },
+    "G_universal_diffusion": {
+      "error": "Insufficient DM features",
+      "n_dm": 0
+    },
+    "H_normalization": {
+      "n_dm_before": 0,
+      "n_dm_became_stable": 0,
+      "n_dm_still_unstable": 0,
+      "dm_stabilization_rate": 0.0,
+      "interpretation": {
+        "high_stabilization": "Nonlinearity largely due to global alpha(t)",
+        "low_stabilization": "Feature-specific diffusion remains dominant"
+      },
+      "r_cv_stats": {
+        "dm_mean": NaN,
+        "wb_mean": 0.0024233810362289192
+      }
+    }
+  },
+  {
+    "run_id": "m112_s0.020204_seed1",
+    "m_hidden": 112,
+    "sparsity": 0.020204,
+    "seed": 1,
+    "D_audit_summary": {
+      "late_alpha_all": 0.998797595500946,
+      "late_alpha_dm": NaN,
+      "late_alpha_spiked": 0.9987342953681946,
+      "late_r2_all_mean": 0.9999973177909851,
+      "dm_slope_ratio": NaN,
+      "spiked_slope_ratio": 0.9999366402626038
+    },
+    "E_slope_matching": {
+      "error": "Insufficient valid comparisons"
+    },
+    "F_alpha_predictor": {
+      "trace_predictor": {
+        "correlation": 0.9999420046806335,
+        "p_value": 0.0,
+        "rmse": 0.007820194587111473
+      },
+      "median_kappa_predictor": {
+        "correlation": 0.9999979138374329,
+        "p_value": 0.0,
+        "rmse": 0.00023269178927876055
+      },
+      "mean_kappa_predictor": {
+        "correlation": 0.9814428091049194,
+        "p_value": 2.0412994989512475e-40,
+        "rmse": 0.018787728622555733
+      },
+      "best_predictor": "median_kappa"
+    },
+    "G_universal_diffusion": {
+      "error": "Insufficient DM features",
+      "n_dm": 0
+    },
+    "H_normalization": {
+      "n_dm_before": 0,
+      "n_dm_became_stable": 0,
+      "n_dm_still_unstable": 0,
+      "dm_stabilization_rate": 0.0,
+      "interpretation": {
+        "high_stabilization": "Nonlinearity largely due to global alpha(t)",
+        "low_stabilization": "Feature-specific diffusion remains dominant"
+      },
+      "r_cv_stats": {
+        "dm_mean": NaN,
+        "wb_mean": 0.00438875960950845
+      }
+    }
+  },
+  {
+    "run_id": "m112_s0.040408_seed0",
+    "m_hidden": 112,
+    "sparsity": 0.040408,
+    "seed": 0,
+    "D_audit_summary": {
+      "late_alpha_all": 0.9984607696533203,
+      "late_alpha_dm": NaN,
+      "late_alpha_spiked": 0.9984048008918762,
+      "late_r2_all_mean": 0.9999979138374329,
+      "dm_slope_ratio": NaN,
+      "spiked_slope_ratio": 0.9999439716339111
+    },
+    "E_slope_matching": {
+      "error": "Insufficient valid comparisons"
+    },
+    "F_alpha_predictor": {
+      "trace_predictor": {
+        "correlation": 0.9999508857727051,
+        "p_value": 0.0,
+        "rmse": 0.00772231537848711
+      },
+      "median_kappa_predictor": {
+        "correlation": 0.9999988079071045,
+        "p_value": 0.0,
+        "rmse": 0.0003122792113572359
+      },
+      "mean_kappa_predictor": {
+        "correlation": 0.9862844944000244,
+        "p_value": 6.165713243029195e-44,
+        "rmse": 0.01587028056383133
+      },
+      "best_predictor": "median_kappa"
+    },
+    "G_universal_diffusion": {
+      "error": "Insufficient DM features",
+      "n_dm": 0
+    },
+    "H_normalization": {
+      "n_dm_before": 0,
+      "n_dm_became_stable": 0,
+      "n_dm_still_unstable": 0,
+      "dm_stabilization_rate": 0.0,
+      "interpretation": {
+        "high_stabilization": "Nonlinearity largely due to global alpha(t)",
+        "low_stabilization": "Feature-specific diffusion remains dominant"
+      },
+      "r_cv_stats": {
+        "dm_mean": NaN,
+        "wb_mean": 0.0039059638471460765
+      }
+    }
+  },
+  {
+    "run_id": "m112_s0.040408_seed1",
+    "m_hidden": 112,
+    "sparsity": 0.040408,
+    "seed": 1,
+    "D_audit_summary": {
+      "late_alpha_all": 0.9985823631286621,
+      "late_alpha_dm": NaN,
+      "late_alpha_spiked": 0.9985238313674927,
+      "late_r2_all_mean": 0.9999974370002747,
+      "dm_slope_ratio": NaN,
+      "spiked_slope_ratio": 0.9999414086341858
+    },
+    "E_slope_matching": {
+      "error": "Insufficient valid comparisons"
+    },
+    "F_alpha_predictor": {
+      "trace_predictor": {
+        "correlation": 0.9999405741691589,
+        "p_value": 0.0,
+        "rmse": 0.007761706132441759
+      },
+      "median_kappa_predictor": {
+        "correlation": 0.9999985098838806,
+        "p_value": 0.0,
+        "rmse": 0.00019902778149116784
+      },
+      "mean_kappa_predictor": {
+        "correlation": 0.9826832413673401,
+        "p_value": 3.202807770060802e-41,
+        "rmse": 0.017559045925736427
+      },
+      "best_predictor": "median_kappa"
+    },
+    "G_universal_diffusion": {
+      "error": "Insufficient DM features",
+      "n_dm": 0
+    },
+    "H_normalization": {
+      "n_dm_before": 0,
+      "n_dm_became_stable": 0,
+      "n_dm_still_unstable": 0,
+      "dm_stabilization_rate": 0.0,
+      "interpretation": {
+        "high_stabilization": "Nonlinearity largely due to global alpha(t)",
+        "low_stabilization": "Feature-specific diffusion remains dominant"
+      },
+      "r_cv_stats": {
+        "dm_mean": NaN,
+        "wb_mean": 0.0044482303192252045
+      }
+    }
+  },
+  {
+    "run_id": "m112_s0.060612_seed0",
+    "m_hidden": 112,
+    "sparsity": 0.060612,
+    "seed": 0,
+    "D_audit_summary": {
+      "late_alpha_all": 0.9982048273086548,
+      "late_alpha_dm": NaN,
+      "late_alpha_spiked": 0.9981561899185181,
+      "late_r2_all_mean": 0.9999974966049194,
+      "dm_slope_ratio": NaN,
+      "spiked_slope_ratio": 0.9999513030052185
+    },
+    "E_slope_matching": {
+      "error": "Insufficient valid comparisons"
+    },
+    "F_alpha_predictor": {
+      "trace_predictor": {
+        "correlation": 0.9999499917030334,
+        "p_value": 0.0,
+        "rmse": 0.007679266855120659
+      },
+      "median_kappa_predictor": {
+        "correlation": 0.9999986290931702,
+        "p_value": 0.0,
+        "rmse": 0.0002975123643409461
+      },
+      "mean_kappa_predictor": {
+        "correlation": 0.9864322543144226,
+        "p_value": 4.764414778704378e-44,
+        "rmse": 0.014820370823144913
+      },
+      "best_predictor": "median_kappa"
+    },
+    "G_universal_diffusion": {
+      "error": "Insufficient DM features",
+      "n_dm": 0
+    },
+    "H_normalization": {
+      "n_dm_before": 0,
+      "n_dm_became_stable": 0,
+      "n_dm_still_unstable": 0,
+      "dm_stabilization_rate": 0.0,
+      "interpretation": {
+        "high_stabilization": "Nonlinearity largely due to global alpha(t)",
+        "low_stabilization": "Feature-specific diffusion remains dominant"
+      },
+      "r_cv_stats": {
+        "dm_mean": NaN,
+        "wb_mean": 0.0037588069402311477
+      }
+    }
+  },
+  {
+    "run_id": "m112_s0.060612_seed1",
+    "m_hidden": 112,
+    "sparsity": 0.060612,
+    "seed": 1,
+    "D_audit_summary": {
+      "late_alpha_all": 0.998278021812439,
+      "late_alpha_dm": NaN,
+      "late_alpha_spiked": 0.9982300996780396,
+      "late_r2_all_mean": 0.9999977350234985,
+      "dm_slope_ratio": NaN,
+      "spiked_slope_ratio": 0.9999520182609558
+    },
+    "E_slope_matching": {
+      "error": "Insufficient valid comparisons"
+    },
+    "F_alpha_predictor": {
+      "trace_predictor": {
+        "correlation": 0.9999396800994873,
+        "p_value": 0.0,
+        "rmse": 0.007713809609413147
+      },
+      "median_kappa_predictor": {
+        "correlation": 0.9999986886978149,
+        "p_value": 0.0,
+        "rmse": 0.0001841099583543837
+      },
+      "mean_kappa_predictor": {
+        "correlation": 0.9829735159873962,
+        "p_value": 2.0360866686639592e-41,
+        "rmse": 0.016788512468338013
+      },
+      "best_predictor": "median_kappa"
+    },
+    "G_universal_diffusion": {
+      "error": "Insufficient DM features",
+      "n_dm": 0
+    },
+    "H_normalization": {
+      "n_dm_before": 0,
+      "n_dm_became_stable": 0,
+      "n_dm_still_unstable": 0,
+      "dm_stabilization_rate": 0.0,
+      "interpretation": {
+        "high_stabilization": "Nonlinearity largely due to global alpha(t)",
+        "low_stabilization": "Feature-specific diffusion remains dominant"
+      },
+      "r_cv_stats": {
+        "dm_mean": NaN,
+        "wb_mean": 0.004367364417692545
+      }
+    }
+  },
+  {
+    "run_id": "m112_s0.080816_seed0",
+    "m_hidden": 112,
+    "sparsity": 0.080816,
+    "seed": 0,
+    "D_audit_summary": {
+      "late_alpha_all": 0.9979755282402039,
+      "late_alpha_dm": NaN,
+      "late_alpha_spiked": 0.9979316592216492,
+      "late_r2_all_mean": 0.9999973177909851,
+      "dm_slope_ratio": NaN,
+      "spiked_slope_ratio": 0.9999560713768005
+    },
+    "E_slope_matching": {
+      "error": "Insufficient valid comparisons"
+    },
+    "F_alpha_predictor": {
+      "trace_predictor": {
+        "correlation": 0.9999505281448364,
+        "p_value": 0.0,
+        "rmse": 0.007643577177077532
+      },
+      "median_kappa_predictor": {
+        "correlation": 0.9999988675117493,
+        "p_value": 0.0,
+        "rmse": 0.00029034409089945257
+      },
+      "mean_kappa_predictor": {
+        "correlation": 0.9867168068885803,
+        "p_value": 2.5223372357846707e-44,
+        "rmse": 0.014080142602324486
+      },
+      "best_predictor": "median_kappa"
+    },
+    "G_universal_diffusion": {
+      "error": "Insufficient DM features",
+      "n_dm": 0
+    },
+    "H_normalization": {
+      "n_dm_before": 0,
+      "n_dm_became_stable": 0,
+      "n_dm_still_unstable": 0,
+      "dm_stabilization_rate": 0.0,
+      "interpretation": {
+        "high_stabilization": "Nonlinearity largely due to global alpha(t)",
+        "low_stabilization": "Feature-specific diffusion remains dominant"
+      },
+      "r_cv_stats": {
+        "dm_mean": NaN,
+        "wb_mean": 0.0031357353108432853
+      }
+    }
+  },
+  {
+    "run_id": "m112_s0.080816_seed1",
+    "m_hidden": 112,
+    "sparsity": 0.080816,
+    "seed": 1,
+    "D_audit_summary": {
+      "late_alpha_all": 0.9979500770568848,
+      "late_alpha_dm": NaN,
+      "late_alpha_spiked": 0.9979068040847778,
+      "late_r2_all_mean": 0.9999979138374329,
+      "dm_slope_ratio": NaN,
+      "spiked_slope_ratio": 0.9999566674232483
+    },
+    "E_slope_matching": {
+      "error": "Insufficient valid comparisons"
+    },
+    "F_alpha_predictor": {
+      "trace_predictor": {
+        "correlation": 0.9999420046806335,
+        "p_value": 0.0,
+        "rmse": 0.007676983252167702
+      },
+      "median_kappa_predictor": {
+        "correlation": 0.9999989867210388,
+        "p_value": 0.0,
+        "rmse": 0.0001679476408753544
+      },
+      "mean_kappa_predictor": {
+        "correlation": 0.9832378625869751,
+        "p_value": 1.3390808125087952e-41,
+        "rmse": 0.01599731855094433
+      },
+      "best_predictor": "median_kappa"
+    },
+    "G_universal_diffusion": {
+      "error": "Insufficient DM features",
+      "n_dm": 0
+    },
+    "H_normalization": {
+      "n_dm_before": 0,
+      "n_dm_became_stable": 0,
+      "n_dm_still_unstable": 0,
+      "dm_stabilization_rate": 0.0,
+      "interpretation": {
+        "high_stabilization": "Nonlinearity largely due to global alpha(t)",
+        "low_stabilization": "Feature-specific diffusion remains dominant"
+      },
+      "r_cv_stats": {
+        "dm_mean": NaN,
+        "wb_mean": 0.0038107813850579886
+      }
+    }
+  }
+]
