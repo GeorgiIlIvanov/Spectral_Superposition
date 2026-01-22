@@ -1,0 +1,23 @@
+{
+  "n_runs": 10,
+  "dm_rate_mean": 0.0,
+  "dm_rate_std": 0.0,
+  "n_blocks_mean": 9.6,
+  "enrichment": {
+    "bin_0_mean": 0.0,
+    "bin_4_mean": 0.0,
+    "bin_0_std": 0.0,
+    "bin_4_std": 0.0
+  },
+  "correlations": {
+    "gap_vs_rotation_mean": 1.0,
+    "gap_vs_dm_mean": NaN,
+    "rotation_vs_dm_mean": NaN
+  },
+  "logistic_model": {
+    "log_gap_coef_mean": -9.385091799731649e-05,
+    "log_gap_coef_std": 6.636788099885572e-05,
+    "rotation_coef_mean": -0.8796346738479858,
+    "rotation_coef_std": 2.4880163565731803
+  }
+}
