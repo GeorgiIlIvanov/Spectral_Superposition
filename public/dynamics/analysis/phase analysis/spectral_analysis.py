@@ -1,22 +1,4 @@
 #!/usr/bin/env python3
-"""
-Spectral Superposition Analysis
-
-Comprehensive analysis of superposition dynamics through the lens of
-association schemes and spectral decomposition.
-
-Key findings:
-- Conservation law: Σ D_i ≈ m holds with 99.8% accuracy
-- Bimodal D_i distribution: features split into "winners" (D_i ≈ 0.5) and "losers" (D_i ≈ 0)
-- Spectral quantization: features cluster along discrete angular rays
-- Phase transitions: variance peaks in intermediate compression/sparsity regimes
-
-Usage:
-    python spectral_analysis.py [--quick]
-
-    --quick: Run on subset of data for faster results
-"""
-
 import h5py
 import numpy as np
 import matplotlib
@@ -40,7 +22,6 @@ plt.rcParams['grid.alpha'] = 0.3
 
 
 def parse_filename(fname):
-    """Parse experiment parameters from filename."""
     parts = fname.stem.split('_')
     return {
         'n': int(parts[0][1:]),
@@ -52,7 +33,6 @@ def parse_filename(fname):
 
 
 def load_all_experiments(files, final_only=True):
-    """Load experiment data from files."""
     all_data = {}
     for f in tqdm(files, desc='Loading experiments'):
         exp = parse_filename(f)
@@ -80,8 +60,7 @@ def load_all_experiments(files, final_only=True):
     return all_data
 
 
-def plot_di_heatmaps(all_data, m_values, s_values):
-    """Plot mean and std D_i heatmaps."""
+def plot_di_heatmaps(all_data, m_values, s_values):""
     mean_grid = np.full((len(m_values), len(s_values)), np.nan)
     std_grid = np.full((len(m_values), len(s_values)), np.nan)
 
@@ -121,7 +100,6 @@ def plot_di_heatmaps(all_data, m_values, s_values):
 
 
 def plot_di_histogram(all_data):
-    """Plot D_i distribution histogram."""
     all_di = np.concatenate([d['fractional_dims'] for d in all_data.values()])
 
     fig, ax = plt.subplots(figsize=(10, 6))
@@ -139,7 +117,6 @@ def plot_di_histogram(all_data):
 
 
 def plot_phase_diagram(all_data, sample_frac=0.3):
-    """Plot norm vs D_i phase diagram."""
     all_norms, all_dims, all_rhos, all_sparsities = [], [], [], []
 
     for (m, s, seed), data in all_data.items():
@@ -182,7 +159,6 @@ def plot_phase_diagram(all_data, sample_frac=0.3):
 
 
 def plot_conservation_law(all_data):
-    """Test and plot conservation law Σ D_i ≈ m."""
     results = []
     for (m, s, seed), data in all_data.items():
         sum_di = np.sum(data['fractional_dims'])
@@ -240,7 +216,6 @@ def plot_conservation_law(all_data):
 
 
 def plot_polar_rays(all_data, sample_frac=0.5):
-    """Plot polar ray analysis."""
     all_norms, all_dims, all_sparsities = [], [], []
 
     for (m, s, seed), data in all_data.items():
@@ -287,7 +262,6 @@ def plot_polar_rays(all_data, sample_frac=0.5):
 
 
 def plot_training_evolution(filepath):
-    """Plot training dynamics for a single experiment."""
     with h5py.File(filepath, 'r') as f:
         steps = f['checkpoint_steps'][:]
         losses = f['losses'][:]
@@ -333,13 +307,11 @@ def plot_training_evolution(filepath):
 
 
 def compute_gram_spectrum(W):
-    """Compute eigenvalues of M = W^T W"""
     M = W.T @ W
     return np.linalg.eigvalsh(M)[::-1]
 
 
 def plot_eigenvalue_spectra(data_dir):
-    """Plot eigenvalue spectra for different regimes."""
     regimes = [
         ('Low compression, Low sparsity', 512, 0.1),
         ('Low compression, High sparsity', 512, 0.9),
