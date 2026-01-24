@@ -1,18 +1,4 @@
 #!/usr/bin/env python3
-"""
-Create animated GIF of spectral phase diagram evolution during training.
-
-Shows how features organize into quantized spectral rays over time.
-Supports both single-experiment and multi-experiment aggregated views.
-
-Usage:
-    python create_phase_gif.py [--multi] [--m M] [--s S]
-
-    --multi: Aggregate multiple experiments for denser visualization
-    --m M: Target hidden dimension (default: 256)
-    --s S: Target sparsity (default: 0.5)
-"""
-
 import h5py
 import numpy as np
 import matplotlib
@@ -29,7 +15,6 @@ OUTPUT_DIR = Path('.')
 
 
 def find_experiment(data_dir, target_m, target_s, seed=0):
-    """Find experiment closest to target parameters."""
     best_file, best_dist = None, float('inf')
     for f in data_dir.glob('*.h5'):
         parts = f.stem.split('_')
@@ -45,7 +30,6 @@ def find_experiment(data_dir, target_m, target_s, seed=0):
 
 
 def create_single_experiment_gif(data_dir, output_dir, target_m=256, target_s=0.5):
-    """Create GIF from a single experiment's checkpoints."""
 
     exp_file = find_experiment(data_dir, target_m, target_s)
     print(f"Using: {exp_file.name}")
@@ -120,7 +104,6 @@ def create_single_experiment_gif(data_dir, output_dir, target_m=256, target_s=0.
 
 
 def create_multi_experiment_gif(data_dir, output_dir, sample_every=5):
-    """Create GIF aggregating multiple experiments at each checkpoint."""
 
     files = sorted(data_dir.glob('*.h5'))[::sample_every]
     print(f"Using {len(files)} experiments")
