@@ -1,0 +1,426 @@
+#!/usr/bin/env python3
+import h5py
+import numpy as np
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from matplotlib.colors import LinearSegmentedColormap
+from pathlib import Path
+from tqdm import tqdm
+import argparse
+
+# Configuration
+DATA_DIR = Path('../start')
+OUTPUT_DIR = Path('.')
+N_FEATURES = 1024
+
+plt.rcParams['figure.figsize'] = (12, 8)
+plt.rcParams['figure.dpi'] = 120
+plt.rcParams['font.size'] = 11
+plt.rcParams['axes.grid'] = True
+plt.rcParams['grid.alpha'] = 0.3
+
+
+def parse_filename(fname):
+    parts = fname.stem.split('_')
+    return {
+        'n': int(parts[0][1:]),
+        'm': int(parts[1][1:]),
+        's': float(parts[2][1:]),
+        'seed': int(parts[3][4:]),
+        'path': fname
+    }
+
+
+def load_all_experiments(files, final_only=True):
+    all_data = {}
+    for f in tqdm(files, desc='Loading experiments'):
+        exp = parse_filename(f)
+        key = (exp['m'], exp['s'], exp['seed'])
+        try:
+            with h5py.File(f, 'r') as hf:
+                if final_only:
+                    all_data[key] = {
+                        'fractional_dims': hf['fractional_dims'][-1],
+                        'feature_norms': hf['feature_norms'][-1],
+                    }
+                else:
+                    all_data[key] = {
+                        'checkpoint_steps': hf['checkpoint_steps'][:],
+                        'weights': hf['weights'][:],
+                        'fractional_dims': hf['fractional_dims'][:],
+                        'feature_norms': hf['feature_norms'][:],
+                        'biases': hf['biases'][:],
+                        'losses': hf['losses'][:],
+                        'm_hidden': hf.attrs['m_hidden'],
+                        'sparsity': hf.attrs['sparsity'],
+                    }
+        except Exception as e:
+            print(f"Error loading {f}: {e}")
+    return all_data
+
+
+def plot_di_heatmaps(all_data, m_values, s_values):""
+    mean_grid = np.full((len(m_values), len(s_values)), np.nan)
+    std_grid = np.full((len(m_values), len(s_values)), np.nan)
+
+    for i, m in enumerate(m_values):
+        for j, s in enumerate(s_values):
+            di_vals = []
+            for seed in [0, 1]:
+                key = (m, s, seed)
+                if key in all_data:
+                    di_vals.extend(all_data[key]['fractional_dims'].tolist())
+            if di_vals:
+                mean_grid[i, j] = np.mean(di_vals)
+                std_grid[i, j] = np.std(di_vals)
+
+    compression_ratios = [N_FEATURES / m for m in m_values]
+
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 7))
+
+    im1 = ax1.imshow(mean_grid, aspect='auto', cmap='viridis', origin='lower',
+                      extent=[min(s_values), max(s_values), min(compression_ratios), max(compression_ratios)])
+    ax1.set_xlabel('Sparsity S', fontsize=12)
+    ax1.set_ylabel('Compression Ratio n/m', fontsize=12)
+    ax1.set_title('Mean Fractional Dimensionality ⟨D_i⟩', fontsize=14, weight='bold')
+    plt.colorbar(im1, ax=ax1, label='⟨D_i⟩')
+
+    im2 = ax2.imshow(std_grid, aspect='auto', cmap='plasma', origin='lower',
+                      extent=[min(s_values), max(s_values), min(compression_ratios), max(compression_ratios)])
+    ax2.set_xlabel('Sparsity S', fontsize=12)
+    ax2.set_ylabel('Compression Ratio n/m', fontsize=12)
+    ax2.set_title('Std Fractional Dimensionality σ(D_i)', fontsize=14, weight='bold')
+    plt.colorbar(im2, ax=ax2, label='σ(D_i)')
+
+    plt.tight_layout()
+    plt.savefig(OUTPUT_DIR / 'di_heatmaps.png', dpi=150, bbox_inches='tight')
+    print(f"Saved: di_heatmaps.png")
+    plt.close()
+
+
+def plot_di_histogram(all_data):
+    all_di = np.concatenate([d['fractional_dims'] for d in all_data.values()])
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.hist(all_di, bins=100, density=True, alpha=0.7, color='steelblue', edgecolor='white')
+    ax.axvline(np.mean(all_di), color='red', linestyle='--', linewidth=2, label=f'Mean={np.mean(all_di):.3f}')
+    ax.set_xlabel('Fractional Dimensionality D_i', fontsize=12)
+    ax.set_ylabel('Density', fontsize=12)
+    ax.set_title('Distribution of D_i Across All Experiments', fontsize=14, weight='bold')
+    ax.legend()
+    ax.grid(True, alpha=0.3)
+    plt.tight_layout()
+    plt.savefig(OUTPUT_DIR / 'di_histogram.png', dpi=150, bbox_inches='tight')
+    print(f"Saved: di_histogram.png")
+    plt.close()
+
+
+def plot_phase_diagram(all_data, sample_frac=0.3):
+    all_norms, all_dims, all_rhos, all_sparsities = [], [], [], []
+
+    for (m, s, seed), data in all_data.items():
+        rho = N_FEATURES / m
+        all_norms.append(data['feature_norms'])
+        all_dims.append(data['fractional_dims'])
+        all_rhos.append(np.full(len(data['feature_norms']), rho))
+        all_sparsities.append(np.full(len(data['feature_norms']), s))
+
+    X = np.concatenate(all_norms)
+    Y = np.concatenate(all_dims)
+    C = np.concatenate(all_rhos)
+    S = np.concatenate(all_sparsities)
+
+    # Subsample
+    mask = np.random.rand(len(X)) < sample_frac
+
+    fig, ax = plt.subplots(figsize=(12, 9))
+    sc = ax.scatter(X[mask], Y[mask], c=C[mask], cmap='turbo', s=3, alpha=0.4, rasterized=True)
+
+    cbar = plt.colorbar(sc, ax=ax)
+    cbar.set_label('Compression Ratio n/m', fontsize=12)
+
+    x_ref = np.linspace(0, np.percentile(X, 99), 100)
+    for mu in [1, 2, 3, 4, 5]:
+        ax.plot(x_ref, x_ref / mu, '--', alpha=0.5, linewidth=2, label=f'μ={mu}')
+
+    ax.set_xlabel(r'Feature Norm $\|W_i\|^2$', fontsize=14)
+    ax.set_ylabel(r'Fractional Dimensionality $D_i$', fontsize=14)
+    ax.set_title('Spectral Phase Diagram', fontsize=14, weight='bold')
+    ax.legend(loc='upper right', fontsize=10)
+    ax.set_xlim(0, np.percentile(X, 99))
+    ax.set_ylim(0, 1.0)
+    ax.grid(True, alpha=0.3)
+
+    plt.tight_layout()
+    plt.savefig(OUTPUT_DIR / 'phase_diagram.png', dpi=150, bbox_inches='tight')
+    print(f"Saved: phase_diagram.png")
+    plt.close()
+
+
+def plot_conservation_law(all_data):
+    results = []
+    for (m, s, seed), data in all_data.items():
+        sum_di = np.sum(data['fractional_dims'])
+        results.append({
+            'm': m, 's': s, 'sum_di': sum_di,
+            'ratio': sum_di / m, 'rho': N_FEATURES / m
+        })
+
+    ms = np.array([r['m'] for r in results])
+    sum_dis = np.array([r['sum_di'] for r in results])
+    ratios = np.array([r['ratio'] for r in results])
+    sparsities = np.array([r['s'] for r in results])
+    rhos = np.array([r['rho'] for r in results])
+
+    fig, axes = plt.subplots(1, 3, figsize=(16, 5))
+
+    # sum(D_i) vs m
+    ax = axes[0]
+    sc = ax.scatter(ms, sum_dis, c=sparsities, cmap='viridis', alpha=0.6, s=20)
+    ax.plot([0, max(ms)], [0, max(ms)], 'r--', linewidth=2, label='Σ D_i = m')
+    ax.set_xlabel('Hidden Dimension m')
+    ax.set_ylabel('Σ D_i')
+    ax.set_title('Conservation Law: Σ D_i ≈ m')
+    ax.legend()
+    plt.colorbar(sc, ax=ax, label='Sparsity')
+
+    # Ratio distribution
+    ax = axes[1]
+    ax.hist(ratios, bins=50, color='steelblue', alpha=0.7, edgecolor='white')
+    ax.axvline(1.0, color='red', linestyle='--', linewidth=2, label='Exact (ratio=1)')
+    ax.axvline(np.mean(ratios), color='green', linestyle='-', linewidth=2, label=f'Mean={np.mean(ratios):.4f}')
+    ax.set_xlabel('Σ D_i / m')
+    ax.set_ylabel('Count')
+    ax.set_title('Conservation Law Accuracy')
+    ax.legend()
+
+    # Ratio vs compression
+    ax = axes[2]
+    sc = ax.scatter(rhos, ratios, c=sparsities, cmap='viridis', alpha=0.6, s=20)
+    ax.axhline(1.0, color='red', linestyle='--', linewidth=2)
+    ax.set_xlabel('Compression Ratio n/m')
+    ax.set_ylabel('Σ D_i / m')
+    ax.set_title('Conservation vs Compression')
+    plt.colorbar(sc, ax=ax, label='Sparsity')
+
+    plt.tight_layout()
+    plt.savefig(OUTPUT_DIR / 'conservation_law.png', dpi=150, bbox_inches='tight')
+    print(f"Saved: conservation_law.png")
+    plt.close()
+
+    print(f"\nConservation Law Statistics:")
+    print(f"  Mean ratio Σ D_i / m: {np.mean(ratios):.6f}")
+    print(f"  Std ratio: {np.std(ratios):.6f}")
+    print(f"  Experiments within 1% of 1.0: {100*np.mean(np.abs(ratios - 1) < 0.01):.1f}%")
+
+
+def plot_polar_rays(all_data, sample_frac=0.5):
+    all_norms, all_dims, all_sparsities = [], [], []
+
+    for (m, s, seed), data in all_data.items():
+        all_norms.append(data['feature_norms'])
+        all_dims.append(data['fractional_dims'])
+        all_sparsities.append(np.full(len(data['feature_norms']), s))
+
+    X = np.concatenate(all_norms)
+    Y = np.concatenate(all_dims)
+    S = np.concatenate(all_sparsities)
+
+    mask = X > 1e-4
+    X_clean, Y_clean, S_clean = X[mask], Y[mask], S[mask]
+
+    r = np.sqrt(X_clean)
+    theta = np.arctan2(Y_clean, X_clean)
+
+    fig = plt.figure(figsize=(16, 7))
+
+    ax1 = fig.add_subplot(121, projection='polar')
+    sample_idx = np.random.choice(len(theta), min(50000, len(theta)), replace=False)
+    sc = ax1.scatter(theta[sample_idx], r[sample_idx], c=S_clean[sample_idx],
+                     cmap='viridis', s=2, alpha=0.5, rasterized=True)
+    ax1.set_title("Spectral Rays in Polar Coordinates", pad=20)
+    ax1.set_thetamin(0)
+    ax1.set_thetamax(90)
+
+    ax2 = fig.add_subplot(122)
+    ax2.hist(theta, bins=200, density=True, color='steelblue', alpha=0.7, edgecolor='white', linewidth=0.3)
+    for mu in [1, 2, 3, 4, 5]:
+        ref_angle = np.arctan(1/mu)
+        ax2.axvline(ref_angle, color='red', linestyle='--', alpha=0.6,
+                    label=f'μ={mu}' if mu <= 5 else '')
+    ax2.set_xlabel('Angle θ (radians)')
+    ax2.set_ylabel('Density')
+    ax2.set_title('Angular Distribution', fontsize=12, weight='bold')
+    ax2.legend(loc='upper right')
+    ax2.set_xlim(0, np.pi/2)
+
+    plt.tight_layout()
+    plt.savefig(OUTPUT_DIR / 'polar_rays.png', dpi=150, bbox_inches='tight')
+    print(f"Saved: polar_rays.png")
+    plt.close()
+
+
+def plot_training_evolution(filepath):
+    with h5py.File(filepath, 'r') as f:
+        steps = f['checkpoint_steps'][:]
+        losses = f['losses'][:]
+        frac_dims = f['fractional_dims'][:]
+        norms = f['feature_norms'][:]
+        m_hidden = f.attrs['m_hidden']
+        sparsity = f.attrs['sparsity']
+
+    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+
+    axes[0,0].semilogy(steps, losses, 'b-', linewidth=2)
+    axes[0,0].set_xlabel('Training Step')
+    axes[0,0].set_ylabel('Loss')
+    axes[0,0].set_title('Training Loss')
+
+    mean_di = np.mean(frac_dims, axis=1)
+    std_di = np.std(frac_dims, axis=1)
+    axes[0,1].plot(steps, mean_di, 'g-', linewidth=2)
+    axes[0,1].fill_between(steps, mean_di-std_di, mean_di+std_di, alpha=0.3, color='green')
+    axes[0,1].set_xlabel('Training Step')
+    axes[0,1].set_ylabel('D_i')
+    axes[0,1].set_title('Mean Fractional Dimensionality')
+
+    active_frac = np.mean(norms > 0.01, axis=1)
+    axes[1,0].plot(steps, active_frac, 'purple', linewidth=2)
+    axes[1,0].set_xlabel('Training Step')
+    axes[1,0].set_ylabel('Fraction')
+    axes[1,0].set_title('Fraction of Active Features')
+
+    sum_di = np.sum(frac_dims, axis=1)
+    axes[1,1].plot(steps, sum_di, 'red', linewidth=2, label='Σ D_i')
+    axes[1,1].axhline(m_hidden, color='black', linestyle='--', label=f'm={m_hidden}')
+    axes[1,1].set_xlabel('Training Step')
+    axes[1,1].set_ylabel('Σ D_i')
+    axes[1,1].set_title('Conservation Law')
+    axes[1,1].legend()
+
+    plt.suptitle(f'Training Dynamics: m={m_hidden}, S={sparsity:.3f}', fontsize=14, weight='bold')
+    plt.tight_layout()
+    plt.savefig(OUTPUT_DIR / 'training_evolution.png', dpi=150, bbox_inches='tight')
+    print(f"Saved: training_evolution.png")
+    plt.close()
+
+
+def compute_gram_spectrum(W):
+    M = W.T @ W
+    return np.linalg.eigvalsh(M)[::-1]
+
+
+def plot_eigenvalue_spectra(data_dir):
+    regimes = [
+        ('Low compression, Low sparsity', 512, 0.1),
+        ('Low compression, High sparsity', 512, 0.9),
+        ('High compression, Low sparsity', 64, 0.1),
+        ('High compression, High sparsity', 64, 0.9),
+        ('Medium compression, Medium sparsity', 256, 0.5),
+    ]
+
+    fig, axes = plt.subplots(2, 3, figsize=(16, 10))
+    axes = axes.flatten()
+
+    for idx, (name, target_m, target_s) in enumerate(regimes):
+        best_f, best_dist = None, float('inf')
+        for f in data_dir.glob('*.h5'):
+            parts = f.stem.split('_')
+            m = int(parts[1][1:])
+            s = float(parts[2][1:])
+            seed = int(parts[3][4:])
+            if seed == 0:
+                dist = abs(m - target_m)/100 + abs(s - target_s)
+                if dist < best_dist:
+                    best_dist = dist
+                    best_f = f
+
+        with h5py.File(best_f, 'r') as hf:
+            W = hf['weights'][-1]
+            m_actual = hf.attrs['m_hidden']
+            s_actual = hf.attrs['sparsity']
+
+        eigs = compute_gram_spectrum(W)
+
+        ax = axes[idx]
+        ax.semilogy(np.arange(len(eigs)), eigs + 1e-10, 'b-', linewidth=1)
+        ax.set_xlabel('Index')
+        ax.set_ylabel('Eigenvalue')
+        ax.set_title(f'{name}\nm={m_actual}, S={s_actual:.2f}')
+        ax.grid(True, alpha=0.3)
+
+        eff_rank = (eigs.sum() ** 2) / ((eigs ** 2).sum() + 1e-10)
+        ax.annotate(f'λ_max={eigs[0]:.2f}\nEff.rank={eff_rank:.1f}',
+                    xy=(0.95, 0.95), xycoords='axes fraction',
+                    ha='right', va='top', fontsize=9,
+                    bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
+
+    axes[5].axis('off')
+    plt.suptitle('Gram Matrix Eigenvalue Spectra Across Regimes', fontsize=14, weight='bold')
+    plt.tight_layout()
+    plt.savefig(OUTPUT_DIR / 'eigenvalue_spectra.png', dpi=150, bbox_inches='tight')
+    print(f"Saved: eigenvalue_spectra.png")
+    plt.close()
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Spectral Superposition Analysis')
+    parser.add_argument('--quick', action='store_true', help='Run on subset for speed')
+    args = parser.parse_args()
+
+    print("=" * 60)
+    print("SPECTRAL SUPERPOSITION ANALYSIS")
+    print("=" * 60)
+
+    # Discover files
+    files = sorted(DATA_DIR.glob('*.h5'))
+    print(f"\nFound {len(files)} experiment files")
+
+    if args.quick:
+        files = files[::10]
+        print(f"Quick mode: using {len(files)} files")
+
+    experiments = [parse_filename(f) for f in files]
+    m_values = sorted(set(e['m'] for e in experiments))
+    s_values = sorted(set(e['s'] for e in experiments))
+    seeds = sorted(set(e['seed'] for e in experiments))
+
+    print(f"m_hidden: {len(m_values)} unique ({min(m_values)} to {max(m_values)})")
+    print(f"sparsity: {len(s_values)} unique ({min(s_values):.3f} to {max(s_values):.3f})")
+    print(f"seeds: {seeds}")
+
+    # Load data
+    print("\nLoading experiment data...")
+    all_data = load_all_experiments(files, final_only=True)
+    print(f"Loaded {len(all_data)} experiments")
+
+    # Generate plots
+    print("\n--- Generating Plots ---")
+
+    plot_di_heatmaps(all_data, m_values, s_values)
+    plot_di_histogram(all_data)
+    plot_phase_diagram(all_data)
+    plot_conservation_law(all_data)
+    plot_polar_rays(all_data)
+    plot_eigenvalue_spectra(DATA_DIR)
+
+    # Training evolution for one representative experiment
+    target_file = None
+    for f in DATA_DIR.glob('*.h5'):
+        parts = f.stem.split('_')
+        m, s, seed = int(parts[1][1:]), float(parts[2][1:]), int(parts[3][4:])
+        if abs(m - 256) < 20 and abs(s - 0.5) < 0.1 and seed == 0:
+            target_file = f
+            break
+    if target_file:
+        plot_training_evolution(target_file)
+
+    print("\n" + "=" * 60)
+    print("ANALYSIS COMPLETE")
+    print(f"Output files saved to: {OUTPUT_DIR.absolute()}")
+    print("=" * 60)
+
+
+if __name__ == '__main__':
+    main()
