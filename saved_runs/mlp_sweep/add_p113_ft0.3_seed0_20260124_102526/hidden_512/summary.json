@@ -1,0 +1,8 @@
+{
+  "hidden_dim": 512,
+  "epoch": 50000,
+  "train_loss": 1.3913237353335717e-06,
+  "test_loss": 8.000947673281189e-06,
+  "train_acc": 1.0,
+  "test_acc": 1.0
+}

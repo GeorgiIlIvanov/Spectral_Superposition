@@ -1,0 +1,9 @@
+{
+  "model_type": "transformer_baseline",
+  "hidden_dim": null,
+  "epoch": 200,
+  "train_loss": 0.010088173672556877,
+  "test_loss": 16.685413360595703,
+  "train_acc": 1.0,
+  "test_acc": 0.03504043072462082
+}

@@ -1,0 +1,42 @@
+[
+  {
+    "hidden_dim": 64,
+    "epoch": 50000,
+    "train_loss": 1.481030722061405e-05,
+    "test_loss": 46.03946304321289,
+    "train_acc": 1.0,
+    "test_acc": 0.002125517465174198
+  },
+  {
+    "hidden_dim": 128,
+    "epoch": 50000,
+    "train_loss": 1.752841626512236e-06,
+    "test_loss": 8.818663445708808e-06,
+    "train_acc": 1.0,
+    "test_acc": 1.0
+  },
+  {
+    "hidden_dim": 256,
+    "epoch": 50000,
+    "train_loss": 1.5490967371079023e-06,
+    "test_loss": 9.037426025315654e-06,
+    "train_acc": 1.0,
+    "test_acc": 1.0
+  },
+  {
+    "hidden_dim": 512,
+    "epoch": 50000,
+    "train_loss": 1.3913237353335717e-06,
+    "test_loss": 8.000947673281189e-06,
+    "train_acc": 1.0,
+    "test_acc": 1.0
+  },
+  {
+    "hidden_dim": 1024,
+    "epoch": 50000,
+    "train_loss": 1.3289180742503959e-06,
+    "test_loss": 1.1459821507742163e-05,
+    "train_acc": 1.0,
+    "test_acc": 1.0
+  }
+]

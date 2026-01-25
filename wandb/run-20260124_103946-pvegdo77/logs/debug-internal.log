@@ -1,0 +1,12 @@
+{"time":"2026-01-24T10:39:46.68811031Z","level":"INFO","msg":"stream: starting","core version":"0.24.0"}
+{"time":"2026-01-24T10:39:46.868207315Z","level":"INFO","msg":"stream: created new stream","id":"pvegdo77"}
+{"time":"2026-01-24T10:39:46.868403069Z","level":"INFO","msg":"handler: started","stream_id":"pvegdo77"}
+{"time":"2026-01-24T10:39:46.875832832Z","level":"INFO","msg":"stream: started","id":"pvegdo77"}
+{"time":"2026-01-24T10:39:46.875859593Z","level":"INFO","msg":"sender: started","stream_id":"pvegdo77"}
+{"time":"2026-01-24T10:39:46.875854583Z","level":"INFO","msg":"writer: started","stream_id":"pvegdo77"}
+{"time":"2026-01-24T10:41:08.058666304Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2026-01-24T10:41:08.177485463Z","level":"INFO","msg":"handler: operation stats","stats":{}}
+{"time":"2026-01-24T10:41:08.18412089Z","level":"INFO","msg":"stream: closing","id":"pvegdo77"}
+{"time":"2026-01-24T10:41:08.184225652Z","level":"INFO","msg":"handler: closed","stream_id":"pvegdo77"}
+{"time":"2026-01-24T10:41:08.199044547Z","level":"INFO","msg":"sender: closed","stream_id":"pvegdo77"}
+{"time":"2026-01-24T10:41:08.199166199Z","level":"INFO","msg":"stream: closed","id":"pvegdo77"}

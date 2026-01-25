@@ -1,0 +1,9 @@
+{
+  "model_type": "mlp",
+  "hidden_dim": 64,
+  "epoch": 200,
+  "train_loss": 0.3658545911312103,
+  "test_loss": 6.748183250427246,
+  "train_acc": 1.0,
+  "test_acc": 0.0
+}

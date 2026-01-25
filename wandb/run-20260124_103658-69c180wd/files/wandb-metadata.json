@@ -1,0 +1,49 @@
+{
+  "os": "Linux-6.8.0-1040-nvidia-x86_64-with-glibc2.35",
+  "python": "CPython 3.10.12",
+  "startedAt": "2026-01-24T10:36:58.030039Z",
+  "args": [
+    "--use-wandb",
+    "--wandb-project",
+    "mlp-grokking",
+    "--hidden-dims",
+    "64",
+    "128",
+    "256",
+    "512",
+    "1024"
+  ],
+  "program": "/home/ubuntu/bilinear-mnist/progress-measures-paper/mlp_grokking_sweep.py",
+  "git": {
+    "remote": "https://github.com/mechanistic-interpretability-grokking/progress-measures-paper.git",
+    "commit": "23d2c64dd1f8a5ca65efaf27e15c2b2cd47dedf1"
+  },
+  "email": "narmeenfatimahoozeer@gmail.com",
+  "root": "/lambda/nfs/bilinear-mnist/progress-measures-paper",
+  "host": "129-146-104-211",
+  "executable": "/usr/bin/python",
+  "cpu_count": 30,
+  "cpu_count_logical": 30,
+  "gpu": "NVIDIA A100-SXM4-40GB",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "532608356352",
+      "used": "26649337856"
+    }
+  },
+  "memory": {
+    "total": "232205713408"
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA A100-SXM4-40GB",
+      "memoryTotal": "42949672960",
+      "cudaCores": 6912,
+      "architecture": "Ampere",
+      "uuid": "GPU-993cb80c-eacd-1816-1c91-4f51c00461db"
+    }
+  ],
+  "cudaVersion": "12.8",
+  "writerId": "d1za47bg3c4pg5ecs97sa04ty930ffkr"
+}

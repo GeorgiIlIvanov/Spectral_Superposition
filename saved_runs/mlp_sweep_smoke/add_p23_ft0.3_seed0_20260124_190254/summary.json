@@ -1,0 +1,29 @@
+[
+  {
+    "model_type": "transformer_baseline",
+    "hidden_dim": null,
+    "epoch": 200,
+    "train_loss": 0.010088173672556877,
+    "test_loss": 16.685413360595703,
+    "train_acc": 1.0,
+    "test_acc": 0.03504043072462082
+  },
+  {
+    "model_type": "mlp",
+    "hidden_dim": 16,
+    "epoch": 200,
+    "train_loss": 1.8508974313735962,
+    "test_loss": 4.4078874588012695,
+    "train_acc": 0.474683552980423,
+    "test_acc": 0.008086252957582474
+  },
+  {
+    "model_type": "mlp",
+    "hidden_dim": 64,
+    "epoch": 200,
+    "train_loss": 0.3658545911312103,
+    "test_loss": 6.748183250427246,
+    "train_acc": 1.0,
+    "test_acc": 0.0
+  }
+]

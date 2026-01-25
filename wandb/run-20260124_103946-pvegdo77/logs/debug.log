@@ -1,0 +1,21 @@
+2026-01-24 10:39:46,680 INFO    MainThread:68782 [wandb_init.py:setup_run_log_directory():717] Logging user logs to /lambda/nfs/bilinear-mnist/progress-measures-paper/wandb/run-20260124_103946-pvegdo77/logs/debug.log
+2026-01-24 10:39:46,680 INFO    MainThread:68782 [wandb_init.py:setup_run_log_directory():718] Logging internal logs to /lambda/nfs/bilinear-mnist/progress-measures-paper/wandb/run-20260124_103946-pvegdo77/logs/debug-internal.log
+2026-01-24 10:39:46,680 INFO    MainThread:68782 [wandb_init.py:init():844] calling init triggers
+2026-01-24 10:39:46,680 INFO    MainThread:68782 [wandb_init.py:init():849] wandb.init called with sweep_config: {}
+config: {'p': 113, 'fn_name': 'add', 'frac_train': 0.3, 'seed': 0, 'd_embed': 128, 'hidden_dims': (64, 128, 256, 512, 1024), 'num_hidden_layers': 1, 'act': 'relu', 'lr': 0.001, 'weight_decay': 1.0, 'num_epochs': 50000, 'warmup_steps': 10, 'eval_every': 10, 'save_every': 1000, 'stopping_thresh': -1.0, 'out_dir': 'saved_runs/mlp_sweep', 'device': 'cuda', 'use_wandb': True, 'wandb_project': 'mlp-grokking', 'wandb_entity': None, 'wandb_group': None, 'wandb_tags': (), 'hidden_dim': 256, 'device_used': 'cuda', '_wandb': {}}
+2026-01-24 10:39:46,680 INFO    MainThread:68782 [wandb_init.py:init():892] starting backend
+2026-01-24 10:39:46,680 INFO    MainThread:68782 [wandb_init.py:init():895] sending inform_init request
+2026-01-24 10:39:46,683 INFO    MainThread:68782 [wandb_init.py:init():903] backend started and connected
+2026-01-24 10:39:46,684 INFO    MainThread:68782 [wandb_init.py:init():973] updated telemetry
+2026-01-24 10:39:46,733 INFO    MainThread:68782 [wandb_init.py:init():997] communicating run to backend with 90.0 second timeout
+2026-01-24 10:39:47,108 INFO    MainThread:68782 [wandb_init.py:init():1044] starting run threads in backend
+2026-01-24 10:39:47,266 INFO    MainThread:68782 [wandb_run.py:_console_start():2529] atexit reg
+2026-01-24 10:39:47,266 INFO    MainThread:68782 [wandb_run.py:_redirect():2377] redirect: wrap_raw
+2026-01-24 10:39:47,266 INFO    MainThread:68782 [wandb_run.py:_redirect():2446] Wrapping output streams.
+2026-01-24 10:39:47,266 INFO    MainThread:68782 [wandb_run.py:_redirect():2469] Redirects installed.
+2026-01-24 10:39:47,268 INFO    MainThread:68782 [wandb_init.py:init():1084] run started, returning control to user process
+2026-01-24 10:41:07,539 INFO    MainThread:68782 [wandb_run.py:_finish():2295] finishing run nlp_and_interpretability/mlp-grokking/pvegdo77
+2026-01-24 10:41:07,541 INFO    MainThread:68782 [wandb_run.py:_atexit_cleanup():2494] got exitcode: 0
+2026-01-24 10:41:07,542 INFO    MainThread:68782 [wandb_run.py:_restore():2476] restore
+2026-01-24 10:41:07,542 INFO    MainThread:68782 [wandb_run.py:_restore():2482] restore done
+2026-01-24 10:41:08,180 INFO    MainThread:68782 [wandb_run.py:_footer_sync_info():3870] logging synced files

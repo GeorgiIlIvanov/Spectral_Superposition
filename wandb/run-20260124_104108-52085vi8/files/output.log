@@ -1,0 +1,500 @@
+[hidden=512] epoch=   100 train_loss=-0.8722 test_loss= 2.2438 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=   200 train_loss=-3.2432 test_loss= 2.4268 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=   300 train_loss=-4.3007 test_loss= 2.4682 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=   400 train_loss=-5.2934 test_loss= 2.5119 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=   500 train_loss=-6.2641 test_loss= 2.5567 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=   600 train_loss=-7.2192 test_loss= 2.6014 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=   700 train_loss=-8.1607 test_loss= 2.6451 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=   800 train_loss=-9.0806 test_loss= 2.6866 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=   900 train_loss=-9.9650 test_loss= 2.7252 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  1000 train_loss=-10.7816 test_loss= 2.7585 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  1100 train_loss=-11.4774 test_loss= 2.7840 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  1200 train_loss=-11.9947 test_loss= 2.7988 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  1300 train_loss=-12.3067 test_loss= 2.8023 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  1400 train_loss=-12.4431 test_loss= 2.7965 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  1500 train_loss=-12.4817 test_loss= 2.7867 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  1600 train_loss=-12.4849 test_loss= 2.7762 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  1700 train_loss=-12.4776 test_loss= 2.7660 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  1800 train_loss=-12.4700 test_loss= 2.7558 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  1900 train_loss=-12.4639 test_loss= 2.7458 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  2000 train_loss=-12.4596 test_loss= 2.7358 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  2100 train_loss=-12.4566 test_loss= 2.7257 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  2200 train_loss=-12.4551 test_loss= 2.7156 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  2300 train_loss=-12.4551 test_loss= 2.7055 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  2400 train_loss=-12.4559 test_loss= 2.6952 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  2500 train_loss=-12.4578 test_loss= 2.6850 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  2600 train_loss=-12.4597 test_loss= 2.6747 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  2700 train_loss=-12.4630 test_loss= 2.6643 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  2800 train_loss=-12.4670 test_loss= 2.6536 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  2900 train_loss=-12.4703 test_loss= 2.6425 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  3000 train_loss=-12.4736 test_loss= 2.6312 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  3100 train_loss=-12.4772 test_loss= 2.6196 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  3200 train_loss=-12.4805 test_loss= 2.6078 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  3300 train_loss=-12.4846 test_loss= 2.5958 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  3400 train_loss=-12.4883 test_loss= 2.5836 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  3500 train_loss=-12.4918 test_loss= 2.5713 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  3600 train_loss=-12.4954 test_loss= 2.5588 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  3700 train_loss=-12.4994 test_loss= 2.5461 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  3800 train_loss=-12.5029 test_loss= 2.5332 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  3900 train_loss=-12.5074 test_loss= 2.5201 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  4000 train_loss=-12.5119 test_loss= 2.5069 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  4100 train_loss=-12.5151 test_loss= 2.4933 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  4200 train_loss=-12.5187 test_loss= 2.4797 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  4300 train_loss=-12.5229 test_loss= 2.4659 train_acc= 1.000 test_acc= 0.000
+[hidden=512] epoch=  4400 train_loss=-12.5268 test_loss= 2.4518 train_acc= 1.000 test_acc= 0.001
+[hidden=512] epoch=  4500 train_loss=-12.5298 test_loss= 2.4375 train_acc= 1.000 test_acc= 0.001
+[hidden=512] epoch=  4600 train_loss=-12.5338 test_loss= 2.4231 train_acc= 1.000 test_acc= 0.001
+[hidden=512] epoch=  4700 train_loss=-12.5380 test_loss= 2.4083 train_acc= 1.000 test_acc= 0.001
+[hidden=512] epoch=  4800 train_loss=-12.5416 test_loss= 2.3930 train_acc= 1.000 test_acc= 0.002
+[hidden=512] epoch=  4900 train_loss=-12.5454 test_loss= 2.3772 train_acc= 1.000 test_acc= 0.002
+[hidden=512] epoch=  5000 train_loss=-12.5491 test_loss= 2.3610 train_acc= 1.000 test_acc= 0.002
+[hidden=512] epoch=  5100 train_loss=-12.5532 test_loss= 2.3447 train_acc= 1.000 test_acc= 0.002
+[hidden=512] epoch=  5200 train_loss=-12.5570 test_loss= 2.3281 train_acc= 1.000 test_acc= 0.002
+[hidden=512] epoch=  5300 train_loss=-12.5609 test_loss= 2.3111 train_acc= 1.000 test_acc= 0.003
+[hidden=512] epoch=  5400 train_loss=-12.5647 test_loss= 2.2938 train_acc= 1.000 test_acc= 0.003
+[hidden=512] epoch=  5500 train_loss=-12.5688 test_loss= 2.2760 train_acc= 1.000 test_acc= 0.004
+[hidden=512] epoch=  5600 train_loss=-12.5722 test_loss= 2.2579 train_acc= 1.000 test_acc= 0.004
+[hidden=512] epoch=  5700 train_loss=-12.5764 test_loss= 2.2396 train_acc= 1.000 test_acc= 0.004
+[hidden=512] epoch=  5800 train_loss=-12.5798 test_loss= 2.2206 train_acc= 1.000 test_acc= 0.005
+[hidden=512] epoch=  5900 train_loss=-12.5838 test_loss= 2.2011 train_acc= 1.000 test_acc= 0.006
+[hidden=512] epoch=  6000 train_loss=-12.5869 test_loss= 2.1813 train_acc= 1.000 test_acc= 0.007
+[hidden=512] epoch=  6100 train_loss=-12.5907 test_loss= 2.1612 train_acc= 1.000 test_acc= 0.008
+[hidden=512] epoch=  6200 train_loss=-12.5947 test_loss= 2.1406 train_acc= 1.000 test_acc= 0.009
+[hidden=512] epoch=  6300 train_loss=-12.5983 test_loss= 2.1194 train_acc= 1.000 test_acc= 0.010
+[hidden=512] epoch=  6400 train_loss=-12.6023 test_loss= 2.0975 train_acc= 1.000 test_acc= 0.011
+[hidden=512] epoch=  6500 train_loss=-12.6060 test_loss= 2.0748 train_acc= 1.000 test_acc= 0.013
+[hidden=512] epoch=  6600 train_loss=-12.6103 test_loss= 2.0514 train_acc= 1.000 test_acc= 0.016
+[hidden=512] epoch=  6700 train_loss=-12.6148 test_loss= 2.0272 train_acc= 1.000 test_acc= 0.018
+[hidden=512] epoch=  6800 train_loss=-12.6185 test_loss= 2.0022 train_acc= 1.000 test_acc= 0.021
+[hidden=512] epoch=  6900 train_loss=-12.6226 test_loss= 1.9765 train_acc= 1.000 test_acc= 0.024
+[hidden=512] epoch=  7000 train_loss=-12.6266 test_loss= 1.9500 train_acc= 1.000 test_acc= 0.027
+[hidden=512] epoch=  7100 train_loss=-12.6310 test_loss= 1.9225 train_acc= 1.000 test_acc= 0.032
+[hidden=512] epoch=  7200 train_loss=-12.6352 test_loss= 1.8940 train_acc= 1.000 test_acc= 0.036
+[hidden=512] epoch=  7300 train_loss=-12.6392 test_loss= 1.8644 train_acc= 1.000 test_acc= 0.042
+[hidden=512] epoch=  7400 train_loss=-12.6438 test_loss= 1.8337 train_acc= 1.000 test_acc= 0.047
+[hidden=512] epoch=  7500 train_loss=-12.6481 test_loss= 1.8019 train_acc= 1.000 test_acc= 0.053
+[hidden=512] epoch=  7600 train_loss=-12.6528 test_loss= 1.7688 train_acc= 1.000 test_acc= 0.059
+[hidden=512] epoch=  7700 train_loss=-12.6571 test_loss= 1.7346 train_acc= 1.000 test_acc= 0.068
+[hidden=512] epoch=  7800 train_loss=-12.6616 test_loss= 1.6993 train_acc= 1.000 test_acc= 0.077
+[hidden=512] epoch=  7900 train_loss=-12.6662 test_loss= 1.6629 train_acc= 1.000 test_acc= 0.086
+[hidden=512] epoch=  8000 train_loss=-12.6710 test_loss= 1.6251 train_acc= 1.000 test_acc= 0.097
+[hidden=512] epoch=  8100 train_loss=-12.6762 test_loss= 1.5856 train_acc= 1.000 test_acc= 0.110
+[hidden=512] epoch=  8200 train_loss=-12.6811 test_loss= 1.5444 train_acc= 1.000 test_acc= 0.122
+[hidden=512] epoch=  8300 train_loss=-12.6864 test_loss= 1.5014 train_acc= 1.000 test_acc= 0.137
+[hidden=512] epoch=  8400 train_loss=-12.6920 test_loss= 1.4561 train_acc= 1.000 test_acc= 0.153
+[hidden=512] epoch=  8500 train_loss=-12.6974 test_loss= 1.4086 train_acc= 1.000 test_acc= 0.169
+[hidden=512] epoch=  8600 train_loss=-12.7030 test_loss= 1.3587 train_acc= 1.000 test_acc= 0.188
+[hidden=512] epoch=  8700 train_loss=-12.7090 test_loss= 1.3066 train_acc= 1.000 test_acc= 0.207
+[hidden=512] epoch=  8800 train_loss=-12.7149 test_loss= 1.2519 train_acc= 1.000 test_acc= 0.231
+[hidden=512] epoch=  8900 train_loss=-12.7209 test_loss= 1.1945 train_acc= 1.000 test_acc= 0.254
+[hidden=512] epoch=  9000 train_loss=-12.7268 test_loss= 1.1345 train_acc= 1.000 test_acc= 0.279
+[hidden=512] epoch=  9100 train_loss=-12.7329 test_loss= 1.0717 train_acc= 1.000 test_acc= 0.307
+[hidden=512] epoch=  9200 train_loss=-12.7396 test_loss= 1.0056 train_acc= 1.000 test_acc= 0.332
+[hidden=512] epoch=  9300 train_loss=-12.7454 test_loss= 0.9365 train_acc= 1.000 test_acc= 0.362
+[hidden=512] epoch=  9400 train_loss=-12.7518 test_loss= 0.8641 train_acc= 1.000 test_acc= 0.392
+[hidden=512] epoch=  9500 train_loss=-12.7580 test_loss= 0.7881 train_acc= 1.000 test_acc= 0.424
+[hidden=512] epoch=  9600 train_loss=-12.7639 test_loss= 0.7092 train_acc= 1.000 test_acc= 0.457
+[hidden=512] epoch=  9700 train_loss=-12.7705 test_loss= 0.6271 train_acc= 1.000 test_acc= 0.491
+[hidden=512] epoch=  9800 train_loss=-12.7762 test_loss= 0.5414 train_acc= 1.000 test_acc= 0.523
+[hidden=512] epoch=  9900 train_loss=-12.7832 test_loss= 0.4522 train_acc= 1.000 test_acc= 0.555
+[hidden=512] epoch= 10000 train_loss=-12.7903 test_loss= 0.3590 train_acc= 1.000 test_acc= 0.591
+[hidden=512] epoch= 10100 train_loss=-12.7967 test_loss= 0.2629 train_acc= 1.000 test_acc= 0.623
+[hidden=512] epoch= 10200 train_loss=-12.8030 test_loss= 0.1637 train_acc= 1.000 test_acc= 0.657
+[hidden=512] epoch= 10300 train_loss=-12.8090 test_loss= 0.0625 train_acc= 1.000 test_acc= 0.685
+[hidden=512] epoch= 10400 train_loss=-12.8150 test_loss=-0.0412 train_acc= 1.000 test_acc= 0.719
+[hidden=512] epoch= 10500 train_loss=-12.8215 test_loss=-0.1480 train_acc= 1.000 test_acc= 0.747
+[hidden=512] epoch= 10600 train_loss=-12.8280 test_loss=-0.2577 train_acc= 1.000 test_acc= 0.775
+[hidden=512] epoch= 10700 train_loss=-12.8347 test_loss=-0.3702 train_acc= 1.000 test_acc= 0.798
+[hidden=512] epoch= 10800 train_loss=-12.8410 test_loss=-0.4849 train_acc= 1.000 test_acc= 0.822
+[hidden=512] epoch= 10900 train_loss=-12.8473 test_loss=-0.6023 train_acc= 1.000 test_acc= 0.843
+[hidden=512] epoch= 11000 train_loss=-12.8536 test_loss=-0.7220 train_acc= 1.000 test_acc= 0.863
+[hidden=512] epoch= 11100 train_loss=-12.8602 test_loss=-0.8436 train_acc= 1.000 test_acc= 0.881
+[hidden=512] epoch= 11200 train_loss=-12.8668 test_loss=-0.9669 train_acc= 1.000 test_acc= 0.894
+[hidden=512] epoch= 11300 train_loss=-12.8731 test_loss=-1.0925 train_acc= 1.000 test_acc= 0.905
+[hidden=512] epoch= 11400 train_loss=-12.8795 test_loss=-1.2204 train_acc= 1.000 test_acc= 0.919
+[hidden=512] epoch= 11500 train_loss=-12.8859 test_loss=-1.3507 train_acc= 1.000 test_acc= 0.930
+[hidden=512] epoch= 11600 train_loss=-12.8925 test_loss=-1.4839 train_acc= 1.000 test_acc= 0.939
+[hidden=512] epoch= 11700 train_loss=-12.8993 test_loss=-1.6206 train_acc= 1.000 test_acc= 0.948
+[hidden=512] epoch= 11800 train_loss=-12.9067 test_loss=-1.7597 train_acc= 1.000 test_acc= 0.956
+[hidden=512] epoch= 11900 train_loss=-12.9139 test_loss=-1.9009 train_acc= 1.000 test_acc= 0.964
+[hidden=512] epoch= 12000 train_loss=-12.9198 test_loss=-2.0447 train_acc= 1.000 test_acc= 0.969
+[hidden=512] epoch= 12100 train_loss=-12.9277 test_loss=-2.1916 train_acc= 1.000 test_acc= 0.975
+[hidden=512] epoch= 12200 train_loss=-12.9355 test_loss=-2.3420 train_acc= 1.000 test_acc= 0.979
+[hidden=512] epoch= 12300 train_loss=-12.9427 test_loss=-2.4951 train_acc= 1.000 test_acc= 0.983
+[hidden=512] epoch= 12400 train_loss=-12.9506 test_loss=-2.6520 train_acc= 1.000 test_acc= 0.986
+[hidden=512] epoch= 12500 train_loss=-12.9579 test_loss=-2.8105 train_acc= 1.000 test_acc= 0.989
+[hidden=512] epoch= 12600 train_loss=-12.9659 test_loss=-2.9714 train_acc= 1.000 test_acc= 0.991
+[hidden=512] epoch= 12700 train_loss=-12.9731 test_loss=-3.1344 train_acc= 1.000 test_acc= 0.992
+[hidden=512] epoch= 12800 train_loss=-12.9804 test_loss=-3.3002 train_acc= 1.000 test_acc= 0.994
+[hidden=512] epoch= 12900 train_loss=-12.9877 test_loss=-3.4707 train_acc= 1.000 test_acc= 0.995
+[hidden=512] epoch= 13000 train_loss=-12.9949 test_loss=-3.6443 train_acc= 1.000 test_acc= 0.996
+[hidden=512] epoch= 13100 train_loss=-13.0022 test_loss=-3.8203 train_acc= 1.000 test_acc= 0.996
+[hidden=512] epoch= 13200 train_loss=-13.0097 test_loss=-3.9974 train_acc= 1.000 test_acc= 0.997
+[hidden=512] epoch= 13300 train_loss=-13.0164 test_loss=-4.1760 train_acc= 1.000 test_acc= 0.998
+[hidden=512] epoch= 13400 train_loss=-13.0231 test_loss=-4.3553 train_acc= 1.000 test_acc= 0.998
+[hidden=512] epoch= 13500 train_loss=-13.0304 test_loss=-4.5365 train_acc= 1.000 test_acc= 0.999
+[hidden=512] epoch= 13600 train_loss=-13.0365 test_loss=-4.7172 train_acc= 1.000 test_acc= 0.999
+[hidden=512] epoch= 13700 train_loss=-13.0431 test_loss=-4.8970 train_acc= 1.000 test_acc= 0.999
+[hidden=512] epoch= 13800 train_loss=-13.0505 test_loss=-5.0775 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 13900 train_loss=-13.0565 test_loss=-5.2564 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 14000 train_loss=-13.0625 test_loss=-5.4298 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 14100 train_loss=-13.0682 test_loss=-5.5999 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 14200 train_loss=-13.0738 test_loss=-5.7671 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 14300 train_loss=-13.0797 test_loss=-5.9285 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 14400 train_loss=-13.0853 test_loss=-6.0865 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 14500 train_loss=-13.0897 test_loss=-6.2387 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 14600 train_loss=-13.0956 test_loss=-6.3863 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 14700 train_loss=-13.1003 test_loss=-6.5277 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 14800 train_loss=-13.1047 test_loss=-6.6642 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 14900 train_loss=-13.1095 test_loss=-6.7963 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 15000 train_loss=-13.1139 test_loss=-6.9233 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 15100 train_loss=-13.1177 test_loss=-7.0441 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 15200 train_loss=-13.1222 test_loss=-7.1613 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 15300 train_loss=-13.1268 test_loss=-7.2727 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 15400 train_loss=-13.1302 test_loss=-7.3797 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 15500 train_loss=-13.1341 test_loss=-7.4806 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 15600 train_loss=-13.1383 test_loss=-7.5783 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 15700 train_loss=-13.1414 test_loss=-7.6731 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 15800 train_loss=-13.1457 test_loss=-7.7646 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 15900 train_loss=-13.1493 test_loss=-7.8516 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 16000 train_loss=-13.1529 test_loss=-7.9368 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 16100 train_loss=-13.1566 test_loss=-8.0199 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 16200 train_loss=-13.1604 test_loss=-8.0993 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 16300 train_loss=-13.1636 test_loss=-8.1751 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 16400 train_loss=-13.1673 test_loss=-8.2487 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 16500 train_loss=-13.1709 test_loss=-8.3199 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 16600 train_loss=-13.1743 test_loss=-8.3900 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 16700 train_loss=-13.1772 test_loss=-8.4587 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 16800 train_loss=-13.1816 test_loss=-8.5249 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 16900 train_loss=-13.1846 test_loss=-8.5891 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 17000 train_loss=-13.1881 test_loss=-8.6524 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 17100 train_loss=-13.1916 test_loss=-8.7150 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 17200 train_loss=-13.1955 test_loss=-8.7770 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 17300 train_loss=-13.1991 test_loss=-8.8353 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 17400 train_loss=-13.2027 test_loss=-8.8930 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 17500 train_loss=-13.2059 test_loss=-8.9503 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 17600 train_loss=-13.2091 test_loss=-9.0067 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 17700 train_loss=-13.2132 test_loss=-9.0621 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 17800 train_loss=-13.2158 test_loss=-9.1151 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 17900 train_loss=-13.2205 test_loss=-9.1663 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 18000 train_loss=-13.2231 test_loss=-9.2183 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 18100 train_loss=-13.2275 test_loss=-9.2689 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 18200 train_loss=-13.2301 test_loss=-9.3178 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 18300 train_loss=-13.2345 test_loss=-9.3651 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 18400 train_loss=-13.2366 test_loss=-9.4114 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 18500 train_loss=-13.2401 test_loss=-9.4564 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 18600 train_loss=-13.2437 test_loss=-9.5002 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 18700 train_loss=-13.2476 test_loss=-9.5432 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 18800 train_loss=-13.2506 test_loss=-9.5854 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 18900 train_loss=-13.2541 test_loss=-9.6269 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 19000 train_loss=-13.2566 test_loss=-9.6673 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 19100 train_loss=-13.2601 test_loss=-9.7075 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 19200 train_loss=-13.2632 test_loss=-9.7478 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 19300 train_loss=-13.2666 test_loss=-9.7865 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 19400 train_loss=-13.2684 test_loss=-9.8247 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 19500 train_loss=-13.2724 test_loss=-9.8623 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 19600 train_loss=-13.2749 test_loss=-9.8990 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 19700 train_loss=-13.2780 test_loss=-9.9349 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 19800 train_loss=-13.2806 test_loss=-9.9704 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 19900 train_loss=-13.2843 test_loss=-10.0060 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 20000 train_loss=-13.2872 test_loss=-10.0405 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 20100 train_loss=-13.2892 test_loss=-10.0742 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 20200 train_loss=-13.2916 test_loss=-10.1069 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 20300 train_loss=-13.2952 test_loss=-10.1386 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 20400 train_loss=-13.2982 test_loss=-10.1704 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 20500 train_loss=-13.3005 test_loss=-10.2014 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 20600 train_loss=-13.3028 test_loss=-10.2325 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 20700 train_loss=-13.3053 test_loss=-10.2633 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 20800 train_loss=-13.3072 test_loss=-10.2944 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 20900 train_loss=-13.3099 test_loss=-10.3246 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 21000 train_loss=-13.3125 test_loss=-10.3542 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 21100 train_loss=-13.3149 test_loss=-10.3830 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 21200 train_loss=-13.3172 test_loss=-10.4113 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 21300 train_loss=-13.3189 test_loss=-10.4393 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 21400 train_loss=-13.3209 test_loss=-10.4662 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 21500 train_loss=-13.3224 test_loss=-10.4923 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 21600 train_loss=-13.3253 test_loss=-10.5197 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 21700 train_loss=-13.3273 test_loss=-10.5465 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 21800 train_loss=-13.3290 test_loss=-10.5723 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 21900 train_loss=-13.3311 test_loss=-10.5979 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 22000 train_loss=-13.3320 test_loss=-10.6235 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 22100 train_loss=-13.3348 test_loss=-10.6482 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 22200 train_loss=-13.3370 test_loss=-10.6722 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 22300 train_loss=-13.3388 test_loss=-10.6964 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 22400 train_loss=-13.3410 test_loss=-10.7209 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 22500 train_loss=-13.3435 test_loss=-10.7445 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 22600 train_loss=-13.3453 test_loss=-10.7678 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 22700 train_loss=-13.3475 test_loss=-10.7911 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 22800 train_loss=-13.3480 test_loss=-10.8148 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 22900 train_loss=-13.3503 test_loss=-10.8375 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 23000 train_loss=-13.3519 test_loss=-10.8597 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 23100 train_loss=-13.3537 test_loss=-10.8819 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 23200 train_loss=-13.3551 test_loss=-10.9047 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 23300 train_loss=-13.3565 test_loss=-10.9269 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 23400 train_loss=-13.3587 test_loss=-10.9486 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 23500 train_loss=-13.3604 test_loss=-10.9699 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 23600 train_loss=-13.3615 test_loss=-10.9901 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 23700 train_loss=-13.3627 test_loss=-11.0108 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 23800 train_loss=-13.3653 test_loss=-11.0315 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 23900 train_loss=-13.3671 test_loss=-11.0520 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 24000 train_loss=-13.3692 test_loss=-11.0714 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 24100 train_loss=-13.3703 test_loss=-11.0899 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 24200 train_loss=-13.3719 test_loss=-11.1086 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 24300 train_loss=-13.3741 test_loss=-11.1274 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 24400 train_loss=-13.3758 test_loss=-11.1460 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 24500 train_loss=-13.3787 test_loss=-11.1642 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 24600 train_loss=-13.3803 test_loss=-11.1819 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 24700 train_loss=-13.3809 test_loss=-11.1996 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 24800 train_loss=-13.3832 test_loss=-11.2166 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 24900 train_loss=-13.3840 test_loss=-11.2331 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 25000 train_loss=-13.3858 test_loss=-11.2500 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 25100 train_loss=-13.3880 test_loss=-11.2671 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 25200 train_loss=-13.3889 test_loss=-11.2836 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 25300 train_loss=-13.3903 test_loss=-11.3000 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 25400 train_loss=-13.3923 test_loss=-11.3161 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 25500 train_loss=-13.3939 test_loss=-11.3318 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 25600 train_loss=-13.3952 test_loss=-11.3465 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 25700 train_loss=-13.3971 test_loss=-11.3608 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 25800 train_loss=-13.3978 test_loss=-11.3742 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 25900 train_loss=-13.4001 test_loss=-11.3869 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 26000 train_loss=-13.4017 test_loss=-11.3997 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 26100 train_loss=-13.4021 test_loss=-11.4119 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 26200 train_loss=-13.4035 test_loss=-11.4240 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 26300 train_loss=-13.4058 test_loss=-11.4360 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 26400 train_loss=-13.4057 test_loss=-11.4475 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 26500 train_loss=-13.4076 test_loss=-11.4584 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 26600 train_loss=-13.4095 test_loss=-11.4683 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 26700 train_loss=-13.4109 test_loss=-11.4777 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 26800 train_loss=-13.4118 test_loss=-11.4871 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 26900 train_loss=-13.4125 test_loss=-11.4961 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 27000 train_loss=-13.4135 test_loss=-11.5046 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 27100 train_loss=-13.4150 test_loss=-11.5126 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 27200 train_loss=-13.4166 test_loss=-11.5204 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 27300 train_loss=-13.4169 test_loss=-11.5276 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 27400 train_loss=-13.4181 test_loss=-11.5346 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 27500 train_loss=-13.4188 test_loss=-11.5416 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 27600 train_loss=-13.4193 test_loss=-11.5488 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 27700 train_loss=-13.4207 test_loss=-11.5558 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 27800 train_loss=-13.4221 test_loss=-11.5625 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 27900 train_loss=-13.4221 test_loss=-11.5686 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 28000 train_loss=-13.4224 test_loss=-11.5741 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 28100 train_loss=-13.4238 test_loss=-11.5791 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 28200 train_loss=-13.4240 test_loss=-11.5838 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 28300 train_loss=-13.4259 test_loss=-11.5883 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 28400 train_loss=-13.4268 test_loss=-11.5925 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 28500 train_loss=-13.4265 test_loss=-11.5964 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 28600 train_loss=-13.4271 test_loss=-11.6004 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 28700 train_loss=-13.4276 test_loss=-11.6043 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 28800 train_loss=-13.4279 test_loss=-11.6081 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 28900 train_loss=-13.4288 test_loss=-11.6117 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 29000 train_loss=-13.4300 test_loss=-11.6150 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 29100 train_loss=-13.4306 test_loss=-11.6183 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 29200 train_loss=-13.4310 test_loss=-11.6221 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 29300 train_loss=-13.4313 test_loss=-11.6258 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 29400 train_loss=-13.4322 test_loss=-11.6293 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 29500 train_loss=-13.4333 test_loss=-11.6328 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 29600 train_loss=-13.4332 test_loss=-11.6361 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 29700 train_loss=-13.4339 test_loss=-11.6392 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 29800 train_loss=-13.4346 test_loss=-11.6424 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 29900 train_loss=-13.4356 test_loss=-11.6457 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 30000 train_loss=-13.4356 test_loss=-11.6485 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 30100 train_loss=-13.4362 test_loss=-11.6515 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 30200 train_loss=-13.4368 test_loss=-11.6541 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 30300 train_loss=-13.4370 test_loss=-11.6567 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 30400 train_loss=-13.4380 test_loss=-11.6592 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 30500 train_loss=-13.4382 test_loss=-11.6616 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 30600 train_loss=-13.4393 test_loss=-11.6638 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 30700 train_loss=-13.4394 test_loss=-11.6659 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 30800 train_loss=-13.4399 test_loss=-11.6679 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 30900 train_loss=-13.4405 test_loss=-11.6701 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 31000 train_loss=-13.4403 test_loss=-11.6725 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 31100 train_loss=-13.4423 test_loss=-11.6743 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 31200 train_loss=-13.4414 test_loss=-11.6762 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 31300 train_loss=-13.4428 test_loss=-11.6783 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 31400 train_loss=-13.4424 test_loss=-11.6803 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 31500 train_loss=-13.4430 test_loss=-11.6823 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 31600 train_loss=-13.4433 test_loss=-11.6845 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 31700 train_loss=-13.4431 test_loss=-11.6865 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 31800 train_loss=-13.4449 test_loss=-11.6885 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 31900 train_loss=-13.4450 test_loss=-11.6904 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 32000 train_loss=-13.4453 test_loss=-11.6923 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 32100 train_loss=-13.4459 test_loss=-11.6942 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 32200 train_loss=-13.4461 test_loss=-11.6960 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 32300 train_loss=-13.4467 test_loss=-11.6978 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 32400 train_loss=-13.4473 test_loss=-11.6994 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 32500 train_loss=-13.4482 test_loss=-11.7007 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 32600 train_loss=-13.4481 test_loss=-11.7021 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 32700 train_loss=-13.4486 test_loss=-11.7031 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 32800 train_loss=-13.4496 test_loss=-11.7044 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 32900 train_loss=-13.4495 test_loss=-11.7057 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 33000 train_loss=-13.4509 test_loss=-11.7069 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 33100 train_loss=-13.4503 test_loss=-11.7079 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 33200 train_loss=-13.4504 test_loss=-11.7092 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 33300 train_loss=-13.4502 test_loss=-11.7104 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 33400 train_loss=-13.4518 test_loss=-11.7114 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 33500 train_loss=-13.4518 test_loss=-11.7124 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 33600 train_loss=-13.4522 test_loss=-11.7135 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 33700 train_loss=-13.4529 test_loss=-11.7145 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 33800 train_loss=-13.4525 test_loss=-11.7156 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 33900 train_loss=-13.4542 test_loss=-11.7164 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 34000 train_loss=-13.4535 test_loss=-11.7171 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 34100 train_loss=-13.4546 test_loss=-11.7178 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 34200 train_loss=-13.4540 test_loss=-11.7181 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 34300 train_loss=-13.4554 test_loss=-11.7184 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 34400 train_loss=-13.4544 test_loss=-11.7188 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 34500 train_loss=-13.4548 test_loss=-11.7193 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 34600 train_loss=-13.4556 test_loss=-11.7199 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 34700 train_loss=-13.4566 test_loss=-11.7206 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 34800 train_loss=-13.4562 test_loss=-11.7210 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 34900 train_loss=-13.4568 test_loss=-11.7213 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 35000 train_loss=-13.4572 test_loss=-11.7217 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 35100 train_loss=-13.4577 test_loss=-11.7219 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 35200 train_loss=-13.4575 test_loss=-11.7222 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 35300 train_loss=-13.4581 test_loss=-11.7227 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 35400 train_loss=-13.4589 test_loss=-11.7229 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 35500 train_loss=-13.4587 test_loss=-11.7233 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 35600 train_loss=-13.4594 test_loss=-11.7237 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 35700 train_loss=-13.4594 test_loss=-11.7240 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 35800 train_loss=-13.4591 test_loss=-11.7246 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 35900 train_loss=-13.4604 test_loss=-11.7250 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 36000 train_loss=-13.4610 test_loss=-11.7253 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 36100 train_loss=-13.4607 test_loss=-11.7257 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 36200 train_loss=-13.4616 test_loss=-11.7261 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 36300 train_loss=-13.4620 test_loss=-11.7264 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 36400 train_loss=-13.4622 test_loss=-11.7268 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 36500 train_loss=-13.4630 test_loss=-11.7271 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 36600 train_loss=-13.4626 test_loss=-11.7274 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 36700 train_loss=-13.4624 test_loss=-11.7277 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 36800 train_loss=-13.4632 test_loss=-11.7281 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 36900 train_loss=-13.4637 test_loss=-11.7283 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 37000 train_loss=-13.4648 test_loss=-11.7285 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 37100 train_loss=-13.4646 test_loss=-11.7287 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 37200 train_loss=-13.4634 test_loss=-11.7289 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 37300 train_loss=-13.4641 test_loss=-11.7291 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 37400 train_loss=-13.4644 test_loss=-11.7294 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 37500 train_loss=-13.4650 test_loss=-11.7297 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 37600 train_loss=-13.4661 test_loss=-11.7298 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 37700 train_loss=-13.4662 test_loss=-11.7301 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 37800 train_loss=-13.4652 test_loss=-11.7302 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 37900 train_loss=-13.4656 test_loss=-11.7301 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 38000 train_loss=-13.4663 test_loss=-11.7304 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 38100 train_loss=-13.4655 test_loss=-11.7305 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 38200 train_loss=-13.4668 test_loss=-11.7306 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 38300 train_loss=-13.4665 test_loss=-11.7307 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 38400 train_loss=-13.4662 test_loss=-11.7307 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 38500 train_loss=-13.4671 test_loss=-11.7309 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 38600 train_loss=-13.4676 test_loss=-11.7310 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 38700 train_loss=-13.4664 test_loss=-11.7309 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 38800 train_loss=-13.4671 test_loss=-11.7312 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 38900 train_loss=-13.4679 test_loss=-11.7316 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 39000 train_loss=-13.4682 test_loss=-11.7318 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 39100 train_loss=-13.4684 test_loss=-11.7318 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 39200 train_loss=-13.4686 test_loss=-11.7318 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 39300 train_loss=-13.4681 test_loss=-11.7321 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 39400 train_loss=-13.4678 test_loss=-11.7324 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 39500 train_loss=-13.4691 test_loss=-11.7324 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 39600 train_loss=-13.4681 test_loss=-11.7324 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 39700 train_loss=-13.4689 test_loss=-11.7327 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 39800 train_loss=-13.4697 test_loss=-11.7329 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 39900 train_loss=-13.4696 test_loss=-11.7332 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 40000 train_loss=-13.4700 test_loss=-11.7336 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 40100 train_loss=-13.4695 test_loss=-11.7341 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 40200 train_loss=-13.4702 test_loss=-11.7345 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 40300 train_loss=-13.4707 test_loss=-11.7347 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 40400 train_loss=-13.4704 test_loss=-11.7348 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 40500 train_loss=-13.4711 test_loss=-11.7352 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 40600 train_loss=-13.4706 test_loss=-11.7354 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 40700 train_loss=-13.4712 test_loss=-11.7355 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 40800 train_loss=-13.4718 test_loss=-11.7356 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 40900 train_loss=-13.4715 test_loss=-11.7358 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 41000 train_loss=-13.4722 test_loss=-11.7359 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 41100 train_loss=-13.4722 test_loss=-11.7360 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 41200 train_loss=-13.4727 test_loss=-11.7361 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 41300 train_loss=-13.4725 test_loss=-11.7361 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 41400 train_loss=-13.4721 test_loss=-11.7361 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 41500 train_loss=-13.4732 test_loss=-11.7359 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 41600 train_loss=-13.4735 test_loss=-11.7359 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 41700 train_loss=-13.4732 test_loss=-11.7357 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 41800 train_loss=-13.4729 test_loss=-11.7358 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 41900 train_loss=-13.4731 test_loss=-11.7361 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 42000 train_loss=-13.4728 test_loss=-11.7363 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 42100 train_loss=-13.4737 test_loss=-11.7365 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 42200 train_loss=-13.4728 test_loss=-11.7366 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 42300 train_loss=-13.4739 test_loss=-11.7367 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 42400 train_loss=-13.4744 test_loss=-11.7371 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 42500 train_loss=-13.4734 test_loss=-11.7375 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 42600 train_loss=-13.4745 test_loss=-11.7378 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 42700 train_loss=-13.4752 test_loss=-11.7380 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 42800 train_loss=-13.4756 test_loss=-11.7383 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 42900 train_loss=-13.4755 test_loss=-11.7381 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 43000 train_loss=-13.4748 test_loss=-11.7382 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 43100 train_loss=-13.4755 test_loss=-11.7381 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 43200 train_loss=-13.4757 test_loss=-11.7381 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 43300 train_loss=-13.4752 test_loss=-11.7381 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 43400 train_loss=-13.4756 test_loss=-11.7381 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 43500 train_loss=-13.4752 test_loss=-11.7380 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 43600 train_loss=-13.4763 test_loss=-11.7380 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 43700 train_loss=-13.4758 test_loss=-11.7379 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 43800 train_loss=-13.4762 test_loss=-11.7377 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 43900 train_loss=-13.4769 test_loss=-11.7376 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 44000 train_loss=-13.4776 test_loss=-11.7376 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 44100 train_loss=-13.4772 test_loss=-11.7378 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 44200 train_loss=-13.4771 test_loss=-11.7379 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 44300 train_loss=-13.4771 test_loss=-11.7380 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 44400 train_loss=-13.4776 test_loss=-11.7382 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 44500 train_loss=-13.4770 test_loss=-11.7382 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 44600 train_loss=-13.4776 test_loss=-11.7381 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 44700 train_loss=-13.4786 test_loss=-11.7379 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 44800 train_loss=-13.4778 test_loss=-11.7377 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 44900 train_loss=-13.4782 test_loss=-11.7376 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 45000 train_loss=-13.4782 test_loss=-11.7375 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 45100 train_loss=-13.4789 test_loss=-11.7374 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 45200 train_loss=-13.4785 test_loss=-11.7375 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 45300 train_loss=-13.4788 test_loss=-11.7376 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 45400 train_loss=-13.4775 test_loss=-11.7376 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 45500 train_loss=-13.4784 test_loss=-11.7377 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 45600 train_loss=-13.4791 test_loss=-11.7378 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 45700 train_loss=-13.4795 test_loss=-11.7379 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 45800 train_loss=-13.4807 test_loss=-11.7381 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 45900 train_loss=-13.4797 test_loss=-11.7382 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 46000 train_loss=-13.4802 test_loss=-11.7383 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 46100 train_loss=-13.4804 test_loss=-11.7384 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 46200 train_loss=-13.4804 test_loss=-11.7385 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 46300 train_loss=-13.4815 test_loss=-11.7385 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 46400 train_loss=-13.4811 test_loss=-11.7385 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 46500 train_loss=-13.4810 test_loss=-11.7385 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 46600 train_loss=-13.4806 test_loss=-11.7383 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 46700 train_loss=-13.4813 test_loss=-11.7382 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 46800 train_loss=-13.4818 test_loss=-11.7382 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 46900 train_loss=-13.4811 test_loss=-11.7383 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 47000 train_loss=-13.4813 test_loss=-11.7384 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 47100 train_loss=-13.4812 test_loss=-11.7384 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 47200 train_loss=-13.4817 test_loss=-11.7385 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 47300 train_loss=-13.4813 test_loss=-11.7384 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 47400 train_loss=-13.4822 test_loss=-11.7381 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 47500 train_loss=-13.4824 test_loss=-11.7379 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 47600 train_loss=-13.4830 test_loss=-11.7379 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 47700 train_loss=-13.4825 test_loss=-11.7378 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 47800 train_loss=-13.4824 test_loss=-11.7379 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 47900 train_loss=-13.4820 test_loss=-11.7380 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 48000 train_loss=-13.4827 test_loss=-11.7381 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 48100 train_loss=-13.4838 test_loss=-11.7380 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 48200 train_loss=-13.4840 test_loss=-11.7380 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 48300 train_loss=-13.4838 test_loss=-11.7379 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 48400 train_loss=-13.4841 test_loss=-11.7380 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 48500 train_loss=-13.4841 test_loss=-11.7381 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 48600 train_loss=-13.4837 test_loss=-11.7382 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 48700 train_loss=-13.4846 test_loss=-11.7383 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 48800 train_loss=-13.4849 test_loss=-11.7382 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 48900 train_loss=-13.4836 test_loss=-11.7381 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 49000 train_loss=-13.4842 test_loss=-11.7380 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 49100 train_loss=-13.4846 test_loss=-11.7377 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 49200 train_loss=-13.4847 test_loss=-11.7374 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 49300 train_loss=-13.4843 test_loss=-11.7373 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 49400 train_loss=-13.4842 test_loss=-11.7372 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 49500 train_loss=-13.4859 test_loss=-11.7368 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 49600 train_loss=-13.4847 test_loss=-11.7366 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 49700 train_loss=-13.4847 test_loss=-11.7364 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 49800 train_loss=-13.4854 test_loss=-11.7362 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 49900 train_loss=-13.4848 test_loss=-11.7360 train_acc= 1.000 test_acc= 1.000
+[hidden=512] epoch= 50000 train_loss=-13.4853 test_loss=-11.7360 train_acc= 1.000 test_acc= 1.000
