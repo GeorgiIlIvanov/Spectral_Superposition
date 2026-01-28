@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-01-22T06:02:11.332406",
+  "total_elapsed_seconds": 597.4421005249023,
+  "experiments": {
+    "B": {
+      "name": "Spectral Spread Metrics",
+      "status": "success",
+      "elapsed_seconds": 358.7783031463623
+    },
+    "C": {
+      "name": "Within-Cluster Variance",
+      "status": "success",
+      "elapsed_seconds": 116.33949255943298
+    },
+    "D_H": {
+      "name": "Global Projective Linearity",
+      "status": "success",
+      "elapsed_seconds": 122.32340025901794
+    }
+  },
+  "key_findings": {
+    "B": {
+      "dm_rate": 0.35394775390625,
+      "model_auc": 0.742861361163997,
+      "falsifier_auc": 0.6795971847083958,
+      "spread_separates_in_bulk": 0.15125
+    },
+    "C": {
+      "bulk_higher_variance": 0.4792176039119804,
+      "bulk_dm_rate": 0.07726769564695715,
+      "spiked_dm_rate": 0.39728537503420036
+    },
+    "D_H": {
+      "cross_sectional_r2": 0.9142592619281641,
+      "slope_near_unity_rate": 0.6378125,
+      "dm_stabilization_rate": 0.7168709894856543
+    }
+  }
+}
