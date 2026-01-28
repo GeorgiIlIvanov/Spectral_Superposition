@@ -206,8 +206,8 @@ def plot_conservation_law(all_data):
     n_sparsities = len(unique_sparsities)
 
     # Create colormap: S=0 muted purple -> blue -> teal -> muted yellow-green (S=1)
-    # Subdued color palette
-    colors_list = ['#7B6D8E', '#6B7FA3', '#7A9BA8', '#92BABC', '#A8C9A7', '#C4D4A0', '#D4DBA0']
+    # Subdued but brighter color palette
+    colors_list = ['#9B7BB5', '#7B9FCD', '#8FCAC8', '#A8DCD8', '#C5E8A5', '#E0EDA0', '#F0F5A0']
     sparsity_cmap = LinearSegmentedColormap.from_list('sparsity_gradient', colors_list, N=256)
 
     # Create figure - enlarged single plot
@@ -249,7 +249,7 @@ def plot_conservation_law(all_data):
     sm = plt.cm.ScalarMappable(cmap=sparsity_cmap, norm=plt.Normalize(vmin=0, vmax=1))
     sm.set_array([])
     cbar = plt.colorbar(sm, ax=ax, pad=0.02)
-    cbar.set_label('Sparsity $S$', fontsize=20)
+    cbar.set_label('Sparsity $S$', fontsize=28)
     cbar.ax.tick_params(labelsize=16)
 
     # Create legend with statistics
@@ -262,8 +262,9 @@ def plot_conservation_law(all_data):
     ax.text(0.02, 0.98, stats_text, transform=ax.transAxes, fontsize=26,
             verticalalignment='top', bbox=props, family='monospace')
 
-    # Legend for lines
-    ax.legend(loc='upper right', fontsize=20, framealpha=0.9)
+    # Legend for lines - positioned below the statistics box
+    ax.legend(loc='upper left', fontsize=20, framealpha=0.9,
+              bbox_to_anchor=(0.02, 0.72))
 
     ax.tick_params(axis='both', which='major', labelsize=18)
     ax.grid(True, alpha=0.3, linestyle='-', linewidth=0.5)
