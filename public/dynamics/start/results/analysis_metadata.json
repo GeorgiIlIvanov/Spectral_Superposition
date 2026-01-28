@@ -1,0 +1,9 @@
+{
+  "analysis_date": "2026-01-28T19:27:31.628154",
+  "data_directory": "/home/georgi/Spectral_Superposition/public/dynamics/start",
+  "output_directory": "/home/georgi/Spectral_Superposition/public/dynamics/start/results",
+  "num_files_processed": 3200,
+  "num_gpus_used": 8,
+  "save_feature_metrics": true,
+  "file_pattern": "n1024_m*_s*_seed*.h5"
+}
