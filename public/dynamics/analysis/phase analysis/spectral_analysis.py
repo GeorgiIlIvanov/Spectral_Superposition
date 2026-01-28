@@ -205,8 +205,9 @@ def plot_conservation_law(all_data):
     unique_sparsities = np.sort(np.unique(sparsities))
     n_sparsities = len(unique_sparsities)
 
-    # Create colormap: S=0 purple -> blue -> green -> yellow (S=1)
-    colors_list = ['#8B008B', '#4B0082', '#0000FF', '#00CED1', '#00FF00', '#ADFF2F', '#FFFF00']
+    # Create colormap: S=0 muted purple -> blue -> teal -> muted yellow-green (S=1)
+    # Subdued color palette
+    colors_list = ['#7B6D8E', '#6B7FA3', '#7A9BA8', '#92BABC', '#A8C9A7', '#C4D4A0', '#D4DBA0']
     sparsity_cmap = LinearSegmentedColormap.from_list('sparsity_gradient', colors_list, N=256)
 
     # Create figure - enlarged single plot
@@ -238,34 +239,33 @@ def plot_conservation_law(all_data):
     ax.axvline(mean_ratio, color='black', linestyle='-', linewidth=2.5,
                label=f'Mean = {mean_ratio:.6f}')
 
-    # Labels and title
-    ax.set_xlabel(r'$\sum_i D_i \,/\, m$', fontsize=16)
-    ax.set_ylabel('Count', fontsize=16)
+    # Labels and title (enlarged)
+    ax.set_xlabel(r'$\sum_i D_i \,/\, m$', fontsize=24)
+    ax.set_ylabel('Count', fontsize=24)
     ax.set_title('Conservation Law Accuracy: Distribution of $\\sum_i D_i / m$',
-                 fontsize=18, weight='bold', pad=15)
+                 fontsize=26, weight='bold', pad=15)
 
     # Add colorbar for sparsity
     sm = plt.cm.ScalarMappable(cmap=sparsity_cmap, norm=plt.Normalize(vmin=0, vmax=1))
     sm.set_array([])
     cbar = plt.colorbar(sm, ax=ax, pad=0.02)
-    cbar.set_label('Sparsity $S$', fontsize=14)
-    cbar.ax.tick_params(labelsize=12)
+    cbar.set_label('Sparsity $S$', fontsize=20)
+    cbar.ax.tick_params(labelsize=16)
 
     # Create legend with statistics
     stats_text = (f'Mean: {mean_ratio:.6f}\n'
                   f'Variance: {var_ratio:.2e}\n'
-                  f'Excess Kurtosis: {kurt_ratio:.2f}\n'
-                  f'N experiments: {len(ratios)}')
+                  f'Excess Kurtosis: {kurt_ratio:.2f}')
 
-    # Add statistics box
+    # Add statistics box (2x enlarged font)
     props = dict(boxstyle='round,pad=0.5', facecolor='wheat', alpha=0.8)
-    ax.text(0.02, 0.98, stats_text, transform=ax.transAxes, fontsize=13,
+    ax.text(0.02, 0.98, stats_text, transform=ax.transAxes, fontsize=26,
             verticalalignment='top', bbox=props, family='monospace')
 
     # Legend for lines
-    ax.legend(loc='upper right', fontsize=13, framealpha=0.9)
+    ax.legend(loc='upper right', fontsize=20, framealpha=0.9)
 
-    ax.tick_params(axis='both', which='major', labelsize=12)
+    ax.tick_params(axis='both', which='major', labelsize=18)
     ax.grid(True, alpha=0.3, linestyle='-', linewidth=0.5)
 
     plt.tight_layout()
