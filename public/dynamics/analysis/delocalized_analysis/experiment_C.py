@@ -732,10 +732,24 @@ def run_experiment_C_single_file(
     }
 
 
+def _process_file_C(args):
+    """Worker function for parallel processing."""
+    filepath, config_dict = args
+    try:
+        from data_loader import RefinedSpectralLoader
+        loader = RefinedSpectralLoader()
+        data = loader.load_file(filepath=filepath)
+        config = AnalysisConfig(**config_dict)
+        return run_experiment_C_single_file(data, config)
+    except Exception as e:
+        return {'error': str(e), 'filepath': str(filepath)}
+
+
 def run_experiment_C(
     output_dir: Path = None,
     config: AnalysisConfig = None,
-    max_files: int = None
+    max_files: int = None,
+    n_workers: int = 16
 ) -> Dict:
     """
     Run full Experiment C across all files.
@@ -748,12 +762,16 @@ def run_experiment_C(
         Analysis configuration
     max_files : int, optional
         Maximum number of files to process
+    n_workers : int
+        Number of parallel workers (default: 16)
 
     Returns
     -------
     Dict
         Aggregated results
     """
+    from concurrent.futures import ProcessPoolExecutor, as_completed
+
     if config is None:
         config = AnalysisConfig()
 
@@ -772,21 +790,28 @@ def run_experiment_C(
     if max_files:
         files = files[:max_files]
 
-    logger.info(f"Processing {len(files)} files")
+    logger.info(f"Processing {len(files)} files with {n_workers} workers")
 
-    # Process all files
+    # Config dict for workers
+    config_dict = {
+        'r2_threshold': config.r2_threshold,
+        'late_window_size': config.late_window_size,
+        'lambda_bulk_threshold': config.lambda_bulk_threshold,
+        'variance_floor': config.variance_floor,
+    }
+
+    # Process files in parallel
     all_results = []
-    for i, filepath in enumerate(files):
-        try:
-            data = loader.load_file(filepath=filepath)
-            result = run_experiment_C_single_file(data, config)
-            all_results.append(result)
-
-            if (i + 1) % 100 == 0:
-                logger.info(f"Processed {i + 1}/{len(files)} files")
-
-        except Exception as e:
-            logger.warning(f"Error processing {filepath}: {e}")
+    with ProcessPoolExecutor(max_workers=n_workers) as executor:
+        futures = {executor.submit(_process_file_C, (fp, config_dict)): fp for fp in files}
+        completed = 0
+        for future in as_completed(futures):
+            result = future.result()
+            if 'error' not in result:
+                all_results.append(result)
+            completed += 1
+            if completed % 100 == 0:
+                logger.info(f"Processed {completed}/{len(files)} files")
 
     # Aggregate results
     aggregated = aggregate_experiment_C_results(all_results)
