@@ -25,19 +25,10 @@ npm-debug.log*
 # Temporary files
 .cache/
 
-# Virtual environments
-.venv/
-
 #Checkpoint data
-public/dynamics/start/*.h5
+public/dynamics/start/
 public/dynamics/venv/
 *.h5
 *.npz
 public/dynamics/analysis/delocalized_analysis/results/experiment_C/all_results.json
 public/dynamics/analysis/delocalized_analysis/results/experiment_A/all_results.json
-public/dynamics/analysis/stratified_linearity/bucket_statistics.json
-
-# Large analysis output files
-public/dynamics/start/results/feature_metrics.csv
-public/dynamics/binned_sparsity/analysis_results/feature_metrics.csv
-public/dynamics/nonuniform_sparsity/analysis_results/feature_metrics.csv
