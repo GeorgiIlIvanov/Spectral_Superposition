@@ -30,5 +30,4 @@ public/dynamics/start/
 public/dynamics/venv/
 *.h5
 *.npz
-public/dynamics/analysis/delocalized_analysis/results/*.json
-public/dynamics/analysis/delocalized_analysis/results/*.json
+public/dynamics/analysis/delocalized_analysis/results/all_results.json
