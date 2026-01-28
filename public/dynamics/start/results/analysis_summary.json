@@ -1,0 +1,23 @@
+{
+  "total_experiments": 3200,
+  "sparsity_range": [
+    0.0,
+    0.99
+  ],
+  "hidden_dim_range": [
+    16,
+    512
+  ],
+  "n_features": 1024,
+  "mean_rank_ratio": 1.0,
+  "mean_rho_m": 0.9986930390925918,
+  "mean_rho_r": 0.9986930390925918,
+  "mean_sigma": 0.0013069609074086719,
+  "mean_resid": 0.06458779031390995,
+  "key_finding_rho_r_when_rho_m_low": {
+    "condition": "rho_m < 0.95",
+    "n_samples": 0,
+    "mean_rho_r": NaN,
+    "frac_rho_r_gt_095": NaN
+  }
+}
