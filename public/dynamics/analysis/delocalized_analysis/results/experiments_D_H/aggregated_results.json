@@ -1,0 +1,28 @@
+{
+  "n_runs": 3200,
+  "D_cross_sectional": {
+    "late_r2_mean": 0.9142592619281641,
+    "late_r2_std": 0.2827663408445811,
+    "dm_slope_ratio_mean": 0.9979653741319293
+  },
+  "E_slope_matching": {
+    "ratio_mean": 0.9983196534519392,
+    "ratio_std": 0.0036597236569483175,
+    "near_unity_rate": 0.6378125
+  },
+  "F_alpha_predictor": {
+    "best_predictor_distribution": {
+      "median_kappa": 938,
+      "trace": 1223,
+      "mean_kappa": 1039
+    }
+  },
+  "G_universal_diffusion": {
+    "kappa_cv_mean": 0.03701327935612721,
+    "js_mean": 0.5698152019923834
+  },
+  "H_normalization": {
+    "stabilization_rate_mean": 0.7168709894856543,
+    "stabilization_rate_std": 0.4499179590462653
+  }
+}

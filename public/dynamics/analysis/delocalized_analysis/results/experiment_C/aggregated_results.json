@@ -1,0 +1,16 @@
+{
+  "n_runs": 3200,
+  "var_vs_lambda": {
+    "lambda_vs_var_rho_mean": -0.035591797227233386,
+    "bulk_higher_variance_rate": 0.4792176039119804
+  },
+  "var_vs_gap": {
+    "gap_vs_var_rho_mean": 0.02550393748944029,
+    "gap_negatively_correlated_expected": "Smaller gaps -> higher variance"
+  },
+  "dm_concentration": {
+    "bulk_dm_rate_mean": 0.07726769564695715,
+    "spiked_dm_rate_mean": 0.39728537503420036,
+    "dm_concentrates_in_bulk": false
+  }
+}
