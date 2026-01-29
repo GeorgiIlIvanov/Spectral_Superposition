@@ -36,47 +36,48 @@ cbar = plt.colorbar(sc, ax=ax, shrink=0.8, pad=0.02)
 cbar.set_label('Sparsity', fontsize=14, fontweight='bold')
 cbar.ax.tick_params(labelsize=12)
 
-# 2D binning: localization x sparsity
-n_loc_bins = 8
+# Equal-width localization bins, cycling through sparsity
+bin_width = 0.02
 n_sparsity_bins = 5
-
-loc_edges = np.percentile(localization, np.linspace(0, 100, n_loc_bins + 1))
 sparsity_edges = np.linspace(0, 1, n_sparsity_bins + 1)
 
 # Colormap for sparsity bins
 cmap = cm.viridis
 norm = Normalize(vmin=0, vmax=1)
 
-# Calculate jitter offset for each sparsity bin within a localization bin
-loc_bin_width = np.median(np.diff(loc_edges))
-jitter_width = loc_bin_width * 0.6  # Total spread within a loc bin
-jitter_offsets = np.linspace(-jitter_width/2, jitter_width/2, n_sparsity_bins)
+# Create localization bins from 0 to max with equal width
+loc_max = localization.max()
+loc_bins = np.arange(0, loc_max + bin_width, bin_width)
 
-# Plot error bars for each (localization, sparsity) bin
-for j in range(n_sparsity_bins):
-    s_lo, s_hi = sparsity_edges[j], sparsity_edges[j+1]
-    s_center = (s_lo + s_hi) / 2
-    color = cmap(norm(s_center))
-    jitter = jitter_offsets[j]
+# Offset for each sparsity bin within a localization bin
+jitter_total = bin_width * 0.8
+jitter_offsets = np.linspace(-jitter_total/2, jitter_total/2, n_sparsity_bins)
 
-    for i in range(n_loc_bins):
-        l_lo, l_hi = loc_edges[i], loc_edges[i+1]
+# Collect and plot all valid (loc_bin, sparsity_bin) combinations
+for i, l_lo in enumerate(loc_bins[:-1]):
+    l_hi = l_lo + bin_width
+    l_center = (l_lo + l_hi) / 2
 
-        # Mask for this bin
+    for j in range(n_sparsity_bins):
+        s_lo, s_hi = sparsity_edges[j], sparsity_edges[j+1]
+        s_center = (s_lo + s_hi) / 2
+
         mask = (localization >= l_lo) & (localization < l_hi) & \
                (sparsity >= s_lo) & (sparsity < s_hi)
 
-        if mask.sum() >= 5:  # Need minimum points
-            l_center = (l_lo + l_hi) / 2 + jitter  # Add horizontal jitter
+        if mask.sum() >= 5:
             r2_mean = np.mean(r2[mask])
             kl_err = np.mean(kappa_lambda_error[mask])
 
-            # Plot error bar with colored marker
-            ax.errorbar(l_center, r2_mean, yerr=kl_err,
+            # x position: localization center + jitter based on sparsity bin
+            x_pos = l_center + jitter_offsets[j]
+            color = cmap(norm(s_center))
+
+            ax.errorbar(x_pos, r2_mean, yerr=kl_err,
                        fmt='o', color=color, ecolor=color,
-                       capsize=3, capthick=1.5, linewidth=1.5,
-                       markersize=10, markeredgecolor='black', markeredgewidth=0.8,
-                       zorder=10, alpha=0.95)
+                       capsize=2, capthick=1.2, linewidth=1.2,
+                       markersize=8, markeredgecolor='black', markeredgewidth=0.5,
+                       zorder=10, alpha=0.9)
 
 # Add a proxy artist for legend
 from matplotlib.lines import Line2D
