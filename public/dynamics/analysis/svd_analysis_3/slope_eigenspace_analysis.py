@@ -521,9 +521,14 @@ def create_visualizations(df: pd.DataFrame, output_dir: Path):
     # Figure 3: Degeneracy analysis
     fig, axes = plt.subplots(1, 3, figsize=(18, 5))
 
-    # Panel 1: Localization vs fit quality
+    # Get sparsity for coloring
+    sparsity = df['sparsity'].values
+
+    # Panel 1: Localization vs fit quality, colored by sparsity
     ax = axes[0]
-    ax.scatter(localization, r2, alpha=0.5, s=15, c='steelblue')
+    sc = ax.scatter(localization, r2, alpha=0.6, s=15, c=sparsity, cmap='viridis', vmin=0, vmax=1)
+    cbar = plt.colorbar(sc, ax=ax)
+    cbar.set_label('Sparsity', fontsize=11)
 
     loc_centers, r2_means, r2_stds = [], [], []
     for i in range(10):
@@ -535,16 +540,16 @@ def create_visualizations(df: pd.DataFrame, output_dir: Path):
             r2_means.append(np.mean(r2[m]))
             r2_stds.append(np.std(r2[m]))
 
-    ax.errorbar(loc_centers, r2_means, yerr=r2_stds, fmt='ro-',
-                capsize=3, capthick=2, linewidth=2, markersize=8)
+    ax.errorbar(loc_centers, r2_means, yerr=r2_stds, fmt='ko-',
+                capsize=3, capthick=2, linewidth=2, markersize=8, label='Binned mean')
     ax.set_xlabel('Mean Max Eigenspace Projection', fontsize=12)
     ax.set_ylabel('Cluster R²', fontsize=12)
     ax.set_title('Fit Quality vs Eigenspace Localization', fontsize=13)
+    ax.legend(loc='lower left')
     ax.grid(True, alpha=0.3)
 
     # Panel 2: Sparsity vs eigenspace localization
     ax = axes[1]
-    sparsity = df['sparsity'].values
     sc = ax.scatter(sparsity, localization, c=r2, cmap='viridis', alpha=0.5, s=15)
     plt.colorbar(sc, ax=ax, label='R²')
     ax.set_xlabel('Sparsity', fontsize=12)
@@ -567,6 +572,57 @@ def create_visualizations(df: pd.DataFrame, output_dir: Path):
     plt.savefig(output_dir / 'eigenspace_analysis.png', dpi=150, bbox_inches='tight')
     plt.savefig(output_dir / 'eigenspace_analysis.pdf', dpi=150, bbox_inches='tight')
     print(f"Saved: eigenspace_analysis.png/pdf")
+    plt.close()
+
+    # Figure 4: STANDALONE - Fit Quality vs Localization colored by Sparsity
+    fig, ax = plt.subplots(figsize=(10, 8))
+
+    # Scatter plot colored by sparsity (purple → blue → green → yellow)
+    sc = ax.scatter(localization, r2, c=sparsity, cmap='viridis',
+                    alpha=0.7, s=25, edgecolors='none', vmin=0, vmax=1)
+
+    # Colorbar with larger font
+    cbar = plt.colorbar(sc, ax=ax, shrink=0.8, pad=0.02)
+    cbar.set_label('Sparsity', fontsize=14, fontweight='bold')
+    cbar.ax.tick_params(labelsize=12)
+
+    # Binned means with error bars (black for visibility)
+    loc_centers, r2_means, r2_stds = [], [], []
+    for i in range(10):
+        lo = np.percentile(localization, i*10)
+        hi = np.percentile(localization, (i+1)*10)
+        m = (localization >= lo) & (localization < hi)
+        if m.sum() > 10:
+            loc_centers.append((lo + hi) / 2)
+            r2_means.append(np.mean(r2[m]))
+            r2_stds.append(np.std(r2[m]))
+
+    ax.errorbar(loc_centers, r2_means, yerr=r2_stds, fmt='ko-',
+                capsize=4, capthick=2, linewidth=2.5, markersize=10,
+                label='Binned mean ± std', zorder=10)
+
+    # Labels and title with larger fonts
+    ax.set_xlabel('Mean Max Eigenspace Projection (Localization)', fontsize=14, fontweight='bold')
+    ax.set_ylabel('Cluster R² (Fit Quality)', fontsize=14, fontweight='bold')
+    ax.set_title('Fit Quality vs Eigenspace Localization\nColored by Sparsity', fontsize=16, fontweight='bold')
+
+    # Legend with larger font
+    ax.legend(loc='lower left', fontsize=12, framealpha=0.9)
+
+    # Tick labels
+    ax.tick_params(axis='both', labelsize=12)
+
+    # Grid
+    ax.grid(True, alpha=0.3, linestyle='--')
+
+    # Set axis limits with some padding
+    ax.set_xlim(0, localization.max() * 1.05)
+    ax.set_ylim(r2.min() * 0.95, 1.02)
+
+    plt.tight_layout()
+    plt.savefig(output_dir / 'fit_quality_vs_localization.png', dpi=200, bbox_inches='tight')
+    plt.savefig(output_dir / 'fit_quality_vs_localization.pdf', dpi=200, bbox_inches='tight')
+    print(f"Saved: fit_quality_vs_localization.png/pdf (STANDALONE)")
     plt.close()
 
 
