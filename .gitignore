@@ -32,3 +32,21 @@ public/dynamics/venv/
 *.npz
 public/dynamics/analysis/delocalized_analysis/results/experiment_C/all_results.json
 public/dynamics/analysis/delocalized_analysis/results/experiment_A/all_results.json
+
+# Large analysis output files
+**/feature_metrics.csv
+**/all_cluster_stats.csv
+**/cluster_localization_data.csv
+**/all_eigenspace_stats.csv
+**/eigenspace_cluster_data.csv
+public/dynamics/analysis/svd_results/
+public/dynamics/analysis/refined_spectral_results/
+public/dynamics/analysis/dynamic_hopping/results/
+public/dynamics/binned_sparsity/analysis_results/
+public/dynamics/binned_sparsity/results/
+public/dynamics/nonuniform_sparsity/analysis_results/
+public/dynamics/nonuniform_sparsity/results/
+
+# Analysis logs
+**/analysis_log.txt
+**/full_analysis_log.txt
