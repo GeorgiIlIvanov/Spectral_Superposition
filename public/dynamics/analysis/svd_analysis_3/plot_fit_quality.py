@@ -9,6 +9,8 @@ import pandas as pd
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib.colors import Normalize
+import matplotlib.cm as cm
 from pathlib import Path
 
 OUTPUT_DIR = Path(__file__).parent
@@ -23,43 +25,68 @@ slope_times_lambda = df['slope_times_lambda'].values
 kappa_lambda_error = np.abs(slope_times_lambda - 1.0)  # |κλ - 1|
 
 # Create standalone figure
-fig, ax = plt.subplots(figsize=(10, 8))
+fig, ax = plt.subplots(figsize=(12, 9))
 
 # Scatter plot colored by sparsity (purple → blue → green → yellow)
 sc = ax.scatter(localization, r2, c=sparsity, cmap='viridis',
-                alpha=0.7, s=25, edgecolors='none', vmin=0, vmax=1)
+                alpha=0.5, s=20, edgecolors='none', vmin=0, vmax=1)
 
 # Colorbar
 cbar = plt.colorbar(sc, ax=ax, shrink=0.8, pad=0.02)
 cbar.set_label('Sparsity', fontsize=14, fontweight='bold')
 cbar.ax.tick_params(labelsize=12)
 
-# Binned |κλ - 1| error (shown as error bars on R² means)
-loc_centers, r2_means, kl_error_means, kl_error_stds = [], [], [], []
-for i in range(10):
-    lo = np.percentile(localization, i*10)
-    hi = np.percentile(localization, (i+1)*10)
-    m = (localization >= lo) & (localization < hi)
-    if m.sum() > 10:
-        loc_centers.append((lo + hi) / 2)
-        r2_means.append(np.mean(r2[m]))
-        kl_error_means.append(np.mean(kappa_lambda_error[m]))
-        kl_error_stds.append(np.std(kappa_lambda_error[m]))
+# 2D binning: localization x sparsity
+n_loc_bins = 12
+n_sparsity_bins = 5
 
-# Plot binned means with |κλ - 1| as error bars
-# Scale error bars to be visible on R² scale (multiply by a factor)
-kl_error_scaled = np.array(kl_error_means)  # Already in ~0.01-0.1 range
+loc_edges = np.percentile(localization, np.linspace(0, 100, n_loc_bins + 1))
+sparsity_edges = np.linspace(0, 1, n_sparsity_bins + 1)
 
-ax.errorbar(loc_centers, r2_means, yerr=kl_error_scaled, fmt='ko-',
-            capsize=4, capthick=2, linewidth=2.5, markersize=10,
-            label=r'Binned mean R², error = $|\kappa\lambda - 1|$', zorder=10)
+# Colormap for sparsity bins
+cmap = cm.viridis
+norm = Normalize(vmin=0, vmax=1)
+
+# Plot error bars for each (localization, sparsity) bin
+for j in range(n_sparsity_bins):
+    s_lo, s_hi = sparsity_edges[j], sparsity_edges[j+1]
+    s_center = (s_lo + s_hi) / 2
+    color = cmap(norm(s_center))
+
+    for i in range(n_loc_bins):
+        l_lo, l_hi = loc_edges[i], loc_edges[i+1]
+
+        # Mask for this bin
+        mask = (localization >= l_lo) & (localization < l_hi) & \
+               (sparsity >= s_lo) & (sparsity < s_hi)
+
+        if mask.sum() >= 5:  # Need minimum points
+            l_center = (l_lo + l_hi) / 2
+            r2_mean = np.mean(r2[mask])
+            kl_err = np.mean(kappa_lambda_error[mask])
+
+            # Plot error bar with colored marker
+            ax.errorbar(l_center, r2_mean, yerr=kl_err,
+                       fmt='o', color=color, ecolor=color,
+                       capsize=3, capthick=1.5, linewidth=1.5,
+                       markersize=8, markeredgecolor='black', markeredgewidth=0.5,
+                       zorder=10, alpha=0.9)
+
+# Add a proxy artist for legend
+from matplotlib.lines import Line2D
+legend_elements = [
+    Line2D([0], [0], marker='o', color='w', markerfacecolor='gray',
+           markersize=10, markeredgecolor='black', label='Bin center'),
+    Line2D([0], [0], color='gray', linewidth=2, label=r'Error = $|\kappa\lambda - 1|$')
+]
+ax.legend(handles=legend_elements, loc='lower left', fontsize=12, framealpha=0.9)
 
 # Labels
 ax.set_xlabel('Mean Max Eigenspace Projection (Localization)', fontsize=14, fontweight='bold')
 ax.set_ylabel('Cluster R² (Fit Quality)', fontsize=14, fontweight='bold')
-ax.set_title(r'Fit Quality vs Eigenspace Localization' + '\n' + r'Error bars show mean $|\kappa\lambda - 1|$',
+ax.set_title(r'Fit Quality vs Eigenspace Localization' + '\n' +
+             r'Error bars show mean $|\kappa\lambda - 1|$, colored by sparsity bin',
              fontsize=16, fontweight='bold')
-ax.legend(loc='lower left', fontsize=12, framealpha=0.9)
 ax.tick_params(axis='both', labelsize=12)
 ax.grid(True, alpha=0.3, linestyle='--')
 ax.set_xlim(0, localization.max() * 1.05)
