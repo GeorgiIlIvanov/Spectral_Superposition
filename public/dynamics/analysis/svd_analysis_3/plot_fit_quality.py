@@ -37,7 +37,7 @@ cbar.set_label('Sparsity', fontsize=14, fontweight='bold')
 cbar.ax.tick_params(labelsize=12)
 
 # 2D binning: localization x sparsity
-n_loc_bins = 12
+n_loc_bins = 8
 n_sparsity_bins = 5
 
 loc_edges = np.percentile(localization, np.linspace(0, 100, n_loc_bins + 1))
@@ -47,11 +47,17 @@ sparsity_edges = np.linspace(0, 1, n_sparsity_bins + 1)
 cmap = cm.viridis
 norm = Normalize(vmin=0, vmax=1)
 
+# Calculate jitter offset for each sparsity bin within a localization bin
+loc_bin_width = np.median(np.diff(loc_edges))
+jitter_width = loc_bin_width * 0.6  # Total spread within a loc bin
+jitter_offsets = np.linspace(-jitter_width/2, jitter_width/2, n_sparsity_bins)
+
 # Plot error bars for each (localization, sparsity) bin
 for j in range(n_sparsity_bins):
     s_lo, s_hi = sparsity_edges[j], sparsity_edges[j+1]
     s_center = (s_lo + s_hi) / 2
     color = cmap(norm(s_center))
+    jitter = jitter_offsets[j]
 
     for i in range(n_loc_bins):
         l_lo, l_hi = loc_edges[i], loc_edges[i+1]
@@ -61,7 +67,7 @@ for j in range(n_sparsity_bins):
                (sparsity >= s_lo) & (sparsity < s_hi)
 
         if mask.sum() >= 5:  # Need minimum points
-            l_center = (l_lo + l_hi) / 2
+            l_center = (l_lo + l_hi) / 2 + jitter  # Add horizontal jitter
             r2_mean = np.mean(r2[mask])
             kl_err = np.mean(kappa_lambda_error[mask])
 
@@ -69,8 +75,8 @@ for j in range(n_sparsity_bins):
             ax.errorbar(l_center, r2_mean, yerr=kl_err,
                        fmt='o', color=color, ecolor=color,
                        capsize=3, capthick=1.5, linewidth=1.5,
-                       markersize=8, markeredgecolor='black', markeredgewidth=0.5,
-                       zorder=10, alpha=0.9)
+                       markersize=10, markeredgecolor='black', markeredgewidth=0.8,
+                       zorder=10, alpha=0.95)
 
 # Add a proxy artist for legend
 from matplotlib.lines import Line2D
