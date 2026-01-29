@@ -37,7 +37,7 @@ cbar.set_label('Sparsity', fontsize=14, fontweight='bold')
 cbar.ax.tick_params(labelsize=12)
 
 # Equal-width localization bins, cycling through sparsity
-bin_width = 0.02
+bin_width = 0.04
 n_sparsity_bins = 5
 sparsity_edges = np.linspace(0, 1, n_sparsity_bins + 1)
 
@@ -83,10 +83,11 @@ for i, l_lo in enumerate(loc_bins[:-1]):
 from matplotlib.lines import Line2D
 legend_elements = [
     Line2D([0], [0], marker='o', color='w', markerfacecolor='gray',
-           markersize=10, markeredgecolor='black', label='Bin center'),
-    Line2D([0], [0], color='gray', linewidth=2, label=r'Error = $|\kappa\lambda - 1|$')
+           markersize=14, markeredgecolor='black', markeredgewidth=1.5, label='Bin center'),
+    Line2D([0], [0], color='gray', linewidth=3, label=r'Error = $|\kappa\lambda - 1|$')
 ]
-ax.legend(handles=legend_elements, loc='lower left', fontsize=12, framealpha=0.9)
+ax.legend(handles=legend_elements, loc='lower left', fontsize=16, framealpha=0.95,
+          markerscale=1.2, handlelength=2, borderpad=1)
 
 # Labels
 ax.set_xlabel('Mean Max Eigenspace Projection (Localization)', fontsize=14, fontweight='bold')
