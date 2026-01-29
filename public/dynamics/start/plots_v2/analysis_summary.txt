@@ -1,0 +1,54 @@
+======================================================================
+Capacity Localization Analysis v2 - Summary Report
+======================================================================
+Generated: 2026-01-29T02:24:29.468557
+Number of runs: 3200
+Number of features: 3276800
+
+----------------------------------------------------------------------
+Key Metrics Summary
+----------------------------------------------------------------------
+
+1. Binned Diracness Proxy (q_bin) by Sparsity:
+   Low s (0-0.3): mean q_bin = 0.2571
+   Mid s (0.3-0.6): mean q_bin = 0.2599
+   High s (0.6-0.9): mean q_bin = 0.1673
+   V.High s (0.9-1.0): mean q_bin = 0.0790
+
+2. Coefficient of Variation (cv) by Sparsity:
+   Low s (0-0.3): mean cv = 0.0124
+   Mid s (0.3-0.6): mean cv = 0.0296
+   High s (0.6-0.9): mean cv = 0.0332
+   V.High s (0.9-1.0): mean cv = 0.0503
+
+3. Defect Identity Check:
+   Mean error: 1.77e-13
+   Max error:  7.44e-13
+   Status: PASS
+
+4. Negative D Check:
+   Mean negD_frac: 0.0000
+   Max negD_frac:  0.0000
+   Status: PASS - No negative D values
+
+5. Qualification Rate (q_bin >= 0.9) by Sparsity:
+   Low s (0-0.3): mean qual_rate = 0.0019
+   Mid s (0.3-0.6): mean qual_rate = 0.0262
+   High s (0.6-0.9): mean qual_rate = 0.0072
+   V.High s (0.9-1.0): mean qual_rate = 0.0000
+
+----------------------------------------------------------------------
+Plots Generated
+----------------------------------------------------------------------
+  - plot_A_rank_delocalization.png: Rank/saturation vs sparsity
+  - plot_cv_vs_sparsity.png: Coefficient of variation analysis
+  - plot_q_bin_distribution.png: Binned Diracness proxy distributions
+  - plot_qual_rate_vs_sparsity.png: Qualification rate trends
+  - plot_B_featurewise_localization.png: Sigma distributions
+  - plot_C_assignment_test.png: D_hat vs D_hat_pred for localized features
+  - plot_D_vs_D_hat_diagnostic.png: D sanity check
+  - plot_entropy_distribution.png: H_bin and n_eff distributions
+  - plot_tail_mass_curves.png: Delocalization tail mass
+  - plot_defect_identity_check.png: Gap verification
+
+======================================================================
