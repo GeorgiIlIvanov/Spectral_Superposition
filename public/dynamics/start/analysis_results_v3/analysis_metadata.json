@@ -1,0 +1,7 @@
+{
+  "version": "v3_eigenspace",
+  "analysis_date": "2026-01-29T09:29:00.126499",
+  "num_files": 3200,
+  "eigenvalue_tol": 0.0001,
+  "num_bins": 60
+}
