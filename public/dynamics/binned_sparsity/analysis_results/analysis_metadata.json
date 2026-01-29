@@ -1,0 +1,7 @@
+{
+  "analysis_date": "2026-01-28T20:36:42.100688",
+  "data_directory": "/home/georgi/Spectral_Superposition/public/dynamics/binned_sparsity/results",
+  "num_files_processed": 512,
+  "num_gpus_used": 4,
+  "experiment_type": "per_feature_sparsity"
+}

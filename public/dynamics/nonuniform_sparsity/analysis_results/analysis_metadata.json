@@ -1,0 +1,7 @@
+{
+  "analysis_date": "2026-01-28T20:37:58.720672",
+  "data_directory": "/home/georgi/Spectral_Superposition/public/dynamics/nonuniform_sparsity/results",
+  "num_files_processed": 512,
+  "num_gpus_used": 4,
+  "experiment_type": "per_feature_sparsity"
+}

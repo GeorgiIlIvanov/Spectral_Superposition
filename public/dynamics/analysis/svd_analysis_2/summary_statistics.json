@@ -1,0 +1,74 @@
+{
+  "n_clusters_analyzed": 12403,
+  "n_files": 2153,
+  "pearson_correlation": 0.9686489704253028,
+  "pearson_pvalue": 0.0,
+  "spearman_correlation": 0.6211169655028946,
+  "spearman_pvalue": 0.0,
+  "regression_a": 0.9431737281344568,
+  "regression_b": 0.021916708690226994,
+  "regression_r_squared": 0.9382808279059994,
+  "slope_times_lambda_mean": 0.973957683842584,
+  "slope_times_lambda_std": 0.07039028428418545,
+  "slope_times_lambda_median": 0.9948314761715707,
+  "mean_localization": 0.23601181494970763,
+  "std_localization": 0.18882586512441135,
+  "quartile_statistics": [
+    {
+      "quartile": 1,
+      "loc_range": [
+        0.034283969412739035,
+        0.1304106326808978
+      ],
+      "n_clusters": 3101,
+      "pearson_r": 0.9878173681871967,
+      "pearson_p": 0.0,
+      "regression_slope": 0.9614182917450885,
+      "regression_r_squared": 0.9757831528922786,
+      "mean_slope_times_lambda": 0.9810010089959553,
+      "std_slope_times_lambda": 0.04555451398224427
+    },
+    {
+      "quartile": 2,
+      "loc_range": [
+        0.1304106326808978,
+        0.1804882013676146
+      ],
+      "n_clusters": 3100,
+      "pearson_r": 0.9939232441098038,
+      "pearson_p": 0.0,
+      "regression_slope": 0.9826846537420648,
+      "regression_r_squared": 0.987883415181756,
+      "mean_slope_times_lambda": 0.9931298292568421,
+      "std_slope_times_lambda": 0.0361160264515636
+    },
+    {
+      "quartile": 3,
+      "loc_range": [
+        0.1804882013676146,
+        0.27689795525013194
+      ],
+      "n_clusters": 3101,
+      "pearson_r": 0.9695857403525769,
+      "pearson_p": 0.0,
+      "regression_slope": 0.957732682480212,
+      "regression_r_squared": 0.9400965078950543,
+      "mean_slope_times_lambda": 0.9810864722858373,
+      "std_slope_times_lambda": 0.06710679383135325
+    },
+    {
+      "quartile": 4,
+      "loc_range": [
+        0.27689795525013194,
+        0.9985513862245076
+      ],
+      "n_clusters": 3101,
+      "pearson_r": 0.892216264549305,
+      "pearson_p": 0.0,
+      "regression_slope": 0.8872812018445835,
+      "regression_r_squared": 0.7960498627263158,
+      "mean_slope_times_lambda": 0.940619607400361,
+      "std_slope_times_lambda": 0.10176335489374835
+    }
+  ]
+}
